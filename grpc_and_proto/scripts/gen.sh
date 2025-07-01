@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Generate Go code from .proto definitions
+# Generate Go code from .proto definitions under grpc_and_proto
 PROTO_DIR="proto"
 OUT_DIR="${PROTO_DIR}"
 

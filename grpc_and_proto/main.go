@@ -10,7 +10,7 @@ import (
 
    "google.golang.org/grpc"
    "google.golang.org/grpc/credentials/insecure"
-   pb "example.com/helloworld/proto"
+   pb "example.com/helloworld/grpc_and_proto/proto"
 )
 
 type pingServer struct {
