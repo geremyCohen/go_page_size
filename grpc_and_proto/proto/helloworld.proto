@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package helloworld;
 
-option go_package = "example.com/helloworld/proto;proto";
+option go_package = "example.com/helloworld/grpc_and_proto/proto;proto";
 
 message PingRequest {
     string message = 1;

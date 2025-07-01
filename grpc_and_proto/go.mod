@@ -1,4 +1,4 @@
-module example.com/helloworld
+module example.com/helloworld/grpc_and_proto
 
 go 1.24
 
