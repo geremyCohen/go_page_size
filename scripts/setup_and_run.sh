@@ -15,7 +15,7 @@ function ensure_protoc() {
                 exit 1
             fi
         else
-            echo "On Linux, install protoc with your package manager, e.g.:"
+            echo "On Linux, install protoc with your package can manager, e.g.:"
             echo "  sudo apt-get update && sudo apt-get install -y protobuf-compiler"
             exit 1
         fi
@@ -27,7 +27,7 @@ function ensure_protoc() {
 function ensure_go_plugins() {
     echo "Installing protoc-gen-go and protoc-gen-go-grpc plugins..."
     go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28.1
-    go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.56.0
+    go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
     export PATH="$(go env GOPATH)/bin:$PATH"
 }
 
