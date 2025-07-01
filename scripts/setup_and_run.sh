@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Avoid network lookup failures for proxy.golang.org
+export GOPROXY=direct
 set -euo pipefail
 
 # This script installs necessary tools, generates gRPC code, and runs the example.
@@ -25,9 +27,19 @@ function ensure_protoc() {
 }
 
 function ensure_go_plugins() {
-    echo "Installing protoc-gen-go and protoc-gen-go-grpc plugins..."
-    go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28.1
-    go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+    echo "==> Checking for Go protobuf plugins in PATH"
+    if ! command -v protoc-gen-go >/dev/null; then
+        echo "ERROR: protoc-gen-go not found."
+        echo "Install it with:"
+        echo "  go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28.1"
+        exit 1
+    fi
+    if ! command -v protoc-gen-go-grpc >/dev/null; then
+        echo "ERROR: protoc-gen-go-grpc not found."
+        echo "Install it with:"
+        echo "  go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest"
+        exit 1
+    fi
     export PATH="$(go env GOPATH)/bin:$PATH"
 }
 

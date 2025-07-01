@@ -1,4 +1,4 @@
-Ca//go:generate bash scripts/gen.sh
+//go:generate bash scripts/gen.sh
 package main
 
 import (
