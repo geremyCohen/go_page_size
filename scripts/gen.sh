@@ -3,7 +3,10 @@ set -euo pipefail
 
 # Generate Go code from .proto definitions
 PROTO_DIR="proto"
-OUT_DIR="."
+OUT_DIR="${PROTO_DIR}"
+
+# Clean up any old Go stubs in the proto directory
+rm -f "${OUT_DIR}"/*.pb.go "${OUT_DIR}"/*_grpc.pb.go || true
 
 protoc \
   --proto_path="${PROTO_DIR}" \

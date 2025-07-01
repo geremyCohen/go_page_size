@@ -1,62 +1,41 @@
 #!/usr/bin/env bash
-# Avoid network lookup failures for proxy.golang.org
-export GOPROXY=direct
 set -euo pipefail
 
-# This script installs necessary tools, generates gRPC code, and runs the example.
+# scripts/setup_and_run.sh
+# Automatically installs Go protobuf plugins (if missing), regenerates stubs, and runs the example.
 
-function ensure_protoc() {
-    if ! command -v protoc >/dev/null; then
-        echo "protoc not found."
-        if [[ "$(uname)" == "Darwin" ]]; then
-            if command -v brew >/dev/null; then
-                echo "Installing protoc with Homebrew..."
-                brew install protobuf
-            else
-                echo "Homebrew not found. Please install protoc manually (e.g., brew install protobuf)."
-                exit 1
-            fi
-        else
-            echo "On Linux, install protoc with your package can manager, e.g.:"
-            echo "  sudo apt-get update && sudo apt-get install -y protobuf-compiler"
-            exit 1
-        fi
-    else
-        echo "Found protoc: $(protoc --version)"
-    fi
-}
+# Bypass Go module proxy to fetch plugins directly
+export GOPROXY=direct
+export PATH="$(go env GOPATH)/bin:$PATH"
 
-function ensure_go_plugins() {
-    echo "==> Checking for Go protobuf plugins in PATH"
-    if ! command -v protoc-gen-go >/dev/null; then
-        echo "ERROR: protoc-gen-go not found."
-        echo "Install it with:"
-        echo "  go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28.1"
-        exit 1
-    fi
-    if ! command -v protoc-gen-go-grpc >/dev/null; then
-        echo "ERROR: protoc-gen-go-grpc not found."
-        echo "Install it with:"
-        echo "  go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest"
-        exit 1
-    fi
-    export PATH="$(go env GOPATH)/bin:$PATH"
-}
+# 1) Verify protoc is installed
+if ! command -v protoc >/dev/null; then
+  echo "Error: protoc not found. Install via your package manager:"
+  echo "  Ubuntu/Debian: sudo apt-get update && sudo apt-get install -y protobuf-compiler"
+  echo "  macOS: brew install protobuf"
+  exit 1
+fi
 
-function generate_code() {
-    echo "Generating Go code from proto definitions..."
-    bash scripts/gen.sh
-}
+# 2) Install protoc-gen-go if missing
+if ! command -v protoc-gen-go >/dev/null; then
+  echo "==> Installing protoc-gen-go plugin..."
+  go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28.1
+fi
 
-function build_and_run() {
-    echo "Tidying Go modules (updating go.sum)..."
-    go mod tidy
-    echo "Building and running the gRPC example..."
-    go run main.go
-}
+# 3) Install protoc-gen-go-grpc if missing
+if ! command -v protoc-gen-go-grpc >/dev/null; then
+  echo "==> Installing protoc-gen-go-grpc plugin..."
+  go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+fi
 
-echo "==> Ensuring prerequisites..."
-ensure_protoc
-ensure_go_plugins
-generate_code
-build_and_run
+echo "==> Generating Go code from .proto definitions"
+bash scripts/gen.sh
+
+echo "==> Tidying Go modules (updating go.sum)"
+go mod tidy
+
+echo "==> Downloading Go module dependencies"
+go mod download
+
+echo "==> Building and running the gRPC example"
+go run main.go
