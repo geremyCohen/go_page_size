@@ -49,6 +49,8 @@ function generate_code() {
 }
 
 function build_and_run() {
+    echo "Tidying Go modules (updating go.sum)..."
+    go mod tidy
     echo "Building and running the gRPC example..."
     go run main.go
 }
