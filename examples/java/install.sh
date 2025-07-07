@@ -1,3 +1,5 @@
+# git clone https://github.com/geremyCohen/go_page_size.git ~/XGBoostJavaDemo
+
 # 1. Install system packages
 sudo apt update && sudo apt install -y openjdk-17-jdk maven git cmake build-essential python3 \
     build-essential libssl-dev zlib1g-dev libbz2-dev \
@@ -47,7 +49,6 @@ pyenv global 3.9.22
 cd
 
 git clone --recursive https://github.com/dmlc/xgboost.git ~/xgboost
-git clone https://github.com/geremyCohen/go_page_size.git ~/XGBoostJavaDemo
 
 
 # Patch so with hello world
