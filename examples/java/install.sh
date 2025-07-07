@@ -1,34 +1,74 @@
 # 1. Install system packages
-sudo apt update && sudo apt install -y openjdk-17-jdk maven git cmake build-essential python3 && \
+sudo apt update && sudo apt install -y openjdk-17-jdk maven git cmake build-essential python3 \
+    build-essential libssl-dev zlib1g-dev libbz2-dev \
+    libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+    xz-utils tk-dev libffi-dev liblzma-dev git apt-transport-https ca-certificates gnupg
+
 sudo update-alternatives --config java && java -version
 
 
+sudo rm -rf ~/.pyenv/
+# install pyenv
+
+if which pyenv &>/dev/null; then
+    echo "pyenv is already installed"
+  else
+    echo "Installing pyenv..."
+    curl https://pyenv.run | bash
+
+    # Add to ~/.bashrc
+    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+    echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+    echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+    echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+  fi
+
+source ~/.bashrc
+eval "$(pyenv virtualenv-init -)"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+
+
+# Install Python version (skip if already installed)
+if pyenv versions --bare | grep -q "^3.9.22$"; then
+  echo "Python 3.9.22 is already installed"
+else
+  echo "Installing Python 3.9.22..."
+  pyenv install 3.9.22
+fi
+
+# exec bash --login
+pyenv global 3.9.22
+
+
+
 # 2. Clone and compile XGBoost with JNI bindings
+cd
+
 git clone --recursive https://github.com/dmlc/xgboost.git ~/xgboost
 git clone https://github.com/geremyCohen/go_page_size.git ~/XGBoostJavaDemo
 
 
 # Patch so with hello world
-# (A) Ensure the source file exists
+# 1) Point at your JNI source file
 XCPP=~/xgboost/jvm-packages/xgboost4j/src/native/xgboost4j.cpp
-test -f "$XCPP" || { echo "ERROR: $XCPP not found"; exit 1; }
 
-# (B) Prepend a JNI_OnLoad implementation
-sed -i '1i\
-#include <cstdio>\
-#include <unistd.h>\
-JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void* reserved) { \
-    long page_size = sysconf(_SC_PAGESIZE); \
-    printf("my local xgboost! PAGE_SIZE %ld\n", page_size); \
-    fflush(stdout); \
-    return JNI_VERSION_1_8; \
-}\
-' "$XCPP"
+# 2) Insert the headers immediately after the xgboost4j.h include (line 16)
+sed -i '16a#include <cstdio>'   "$XCPP"
+sed -i '17a#include <unistd.h>' "$XCPP"
 
-cd ~/xgboost && mkdir build && cd build && \
+# 3) Inject your print lines immediately after 'GlobalJvm() = vm;'
+#    (that assignment is on its own line; we’ll append after it)
+sed -i '/GlobalJvm() = vm;/a\
+    long page_size = sysconf(_SC_PAGESIZE);\
+    printf("my local xgboost! PAGE_SIZE %ld\\n", page_size);\
+    fflush(stdout);' "$XCPP"
+
+cd ~/xgboost && mkdir -p build && cd build && \
 cmake .. -DJVM_BINDINGS=ON && make -j$(nproc) && sudo make install && sudo ldconfig && \
 cd ~/xgboost/jvm-packages && python3 create_jni.py && \
-mvn clean package -DskipTests -Dcheckstyle.skip=true -Dscalastyle.skip=true && \
+mvn clean package -DskipTests -Dcheckstyle.skip=true -Dscalastyle.skip=true
 
 # 3. Install Java XGBoost jar locally into Maven repository
 cd ~/xgboost/jvm-packages && \
@@ -40,9 +80,9 @@ mvn install:install-file \
   -Dpackaging=jar && \
 
 # 4. Explicitly copy compiled JNI library to system library path
-sudo cp ~/xgboost/build/lib/libxgboost4j.so /usr/local/lib/ && sudo ldconfig
+sudo cp ~/xgboost/lib/libxgboost4j.so /usr/local/lib/ && sudo ldconfig
 
-cd ~/XGBoostJavaDemo
+cd ~/XGBoostJavaDemo/examples/java/XGBoostJavaDemo
 sed -i '/<dependencies>/,/<\/dependencies>/c\
 <dependencies>\
     <dependency>\
@@ -80,8 +120,11 @@ sed -i '/<dependencies>/,/<\/dependencies>/c\
 </build>' pom.xml
 
 # 8. Set JNI library visibility permanently
-echo "export LD_LIBRARY_PATH=/usr/local/lib:\$LD_LIBRARY_PATH" >> ~/.bashrc && source ~/.bashrc && \
+echo "export LD_LIBRARY_PATH=/usr/local/lib:\$LD_LIBRARY_PATH" >> ~/.bashrc && source ~/.bashrc
 
 # 9. Compile and prepare Java app and its dependencies
-cd ~/XGBoostJavaDemo && \
 mvn clean compile dependency:copy-dependencies
+
+# run it
+java -cp "target/classes:target/dependency/*" com.example.XGBoostDemo
+# sudo lsof -p $(pgrep -f com.example.XGBoostDemo) | grep libxgboost4j.so
