@@ -8,47 +8,9 @@ sudo apt update && sudo apt install -y openjdk-17-jdk maven git cmake build-esse
 
 sudo update-alternatives --config java && java -version
 
-# install pyenv
-
-if which pyenv &>/dev/null; then
-    echo "pyenv is already installed"
-  else
-    echo "Installing pyenv..."
-    curl https://pyenv.run | bash
-
-    # Add to ~/.bashrc
-    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
-    echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
-    echo 'eval "$(pyenv init -)"' >> ~/.bashrc
-    echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
-  fi
-
-source ~/.bashrc
-eval "$(pyenv virtualenv-init -)"
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
-
-
-# Install Python version (skip if already installed)
-if pyenv versions --bare | grep -q "^3.9.22$"; then
-  echo "Python 3.9.22 is already installed"
-else
-  echo "Installing Python 3.9.22..."
-  pyenv install 3.9.22
-fi
-
-# exec bash --login
-pyenv global 3.9.22
-source ~/.bashrc
-
-
-
 # 2. Clone and compile XGBoost with JNI bindings
 cd
-
 git clone --recursive https://github.com/dmlc/xgboost.git ~/xgboost
-
 
 # Patch so with hello world
 # 1) Point at your JNI source file
