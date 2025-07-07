@@ -8,8 +8,6 @@ sudo apt update && sudo apt install -y openjdk-17-jdk maven git cmake build-esse
 
 sudo update-alternatives --config java && java -version
 
-
-sudo rm -rf ~/.pyenv/
 # install pyenv
 
 if which pyenv &>/dev/null; then
@@ -42,6 +40,7 @@ fi
 
 # exec bash --login
 pyenv global 3.9.22
+source ~/.bashrc
 
 
 
