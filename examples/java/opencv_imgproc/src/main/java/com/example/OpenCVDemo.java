@@ -6,7 +6,7 @@ import org.opencv.imgproc.Imgproc;
 public class OpenCVDemo {
     static {
         // Load the custom compiled OpenCV library from specific location
-        System.load("/usr/local/lib/libopencv_java4xx.so");
+        System.load("/usr/local/lib/libopencv_java4130.so");
     }
 
     public static void main(String[] args) {
