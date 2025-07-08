@@ -5,7 +5,7 @@ sudo apt update && sudo apt install -y openjdk-17-jdk maven git cmake build-esse
     libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev  \
      libtbb-dev libjpeg-dev libpng-dev libtiff-dev
 
-sudo update-alternatives --config java && java -version
+# sudo update-alternatives --config java && java -version
 
 # 2. Clone OpenCV
 cd
@@ -19,16 +19,20 @@ if [ -f "$COLOR_SRC" ]; then
     # Add include for printf at the top
     sed -i '1i#include <cstdio>' "$COLOR_SRC"
     
-    # Clean up any previous patches
-    sed -i '/printf("hello from custom imgproc/d' "$COLOR_SRC"
+    # Clean up any previous patches more aggressively
+    sed -i '/printf.*hello from custom imgproc/d' "$COLOR_SRC"
     sed -i '/fflush(stdout);/d' "$COLOR_SRC"
     
     # Apply the patch correctly - find the opening brace after the function declaration
-    sed -i '/^void cvtColor( InputArray _src, OutputArray _dst, int code, int dcn, AlgorithmHint hint)$/,/^{$/{/^{$/a\    printf("hello from custom imgproc\\n"); fflush(stdout);}' "$COLOR_SRC"
+    sed -i '/^void cvtColor( InputArray _src, OutputArray _dst, int code, int dcn, AlgorithmHint hint)$/,/^{$/ {
+        /^{$/ a\    printf("hello from custom imgproc\\n"); fflush(stdout);
+    }' "$COLOR_SRC"
     
     # Verify the patch was applied
     if grep -q "hello from custom imgproc" "$COLOR_SRC"; then
         echo "✓ Patch successfully applied"
+        echo "Patch verification:"
+        grep -A2 -B2 "hello from custom imgproc" "$COLOR_SRC"
     else
         echo "✗ Patch may not have been applied correctly"
     fi
@@ -37,8 +41,10 @@ else
     find ~/opencv/modules/imgproc/src/ -name "*.cpp" | head -5
 fi
 
-# 4. Build OpenCV with Java bindings
-mkdir -p ~/opencv/build && cd ~/opencv/build
+# 4. Build OpenCV with Java bindings (force clean rebuild)
+cd ~/opencv
+rm -rf build
+mkdir build && cd build
 cmake -D CMAKE_BUILD_TYPE=Release \
       -D CMAKE_INSTALL_PREFIX=/usr/local \
       -D BUILD_JAVA=ON \
