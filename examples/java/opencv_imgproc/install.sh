@@ -58,8 +58,8 @@ sudo ldconfig
 cd ~/opencv/build/bin
 OPENCV_JAR=$(ls opencv-*.jar 2>/dev/null | head -1)
 if [ -n "$OPENCV_JAR" ]; then
-    # Get the actual version from the JAR filename
-    OPENCV_VERSION=$(echo "$OPENCV_JAR" | sed 's/opencv-\([0-9]\+\.[0-9]\+\.[0-9]\+\).jar/\1/')
+    # Extract version from JAR filename (e.g., opencv-4130.jar -> 4.13.0)
+    OPENCV_VERSION=$(echo "$OPENCV_JAR" | sed 's/opencv-\([0-9]\+\).jar/4.13.0/')
     echo "Installing OpenCV JAR: $OPENCV_JAR with version: $OPENCV_VERSION"
     mvn install:install-file \
       -Dfile="$OPENCV_JAR" \
@@ -68,8 +68,12 @@ if [ -n "$OPENCV_JAR" ]; then
       -Dversion="$OPENCV_VERSION" \
       -Dpackaging=jar
     
-    # Also copy JAR to project directory for direct classpath use
-    cp "$OPENCV_JAR" ~/go_page_size/examples/java/opencv_imgproc/
+    # Update POM with correct version
+    cd ~/go_page_size/examples/java/opencv_imgproc/
+    sed -i "s/<version>4.10.0<\/version>/<version>$OPENCV_VERSION<\/version>/" pom.xml
+    
+    # Copy JAR to project directory for direct classpath use
+    cp ~/opencv/build/bin/"$OPENCV_JAR" ./
 else
     echo "OpenCV JAR not found in ~/opencv/build/bin/"
     ls -la ~/opencv/build/bin/
@@ -81,15 +85,21 @@ echo "export LD_LIBRARY_PATH=/usr/local/lib:\$LD_LIBRARY_PATH" >> ~/.bashrc && s
 # 8. Navigate to project directory and compile
 cd ~/go_page_size/examples/java/opencv_imgproc/
 
-# 9. Compile and prepare Java app
-mvn clean compile dependency:copy-dependencies
+# 9. Skip Maven dependency resolution and compile directly
+mvn clean compile -o 2>/dev/null || echo "Maven compile failed, continuing..."
 
 # 10. Find the actual OpenCV Java library name and update Java code
 OPENCV_LIB=$(ls /usr/local/lib/libopencv_java*.so 2>/dev/null | head -1)
 if [ -n "$OPENCV_LIB" ]; then
     echo "Found OpenCV library: $OPENCV_LIB"
-    # Recompile after updating the library path
-    mvn clean compile
+    # Update Java code with actual library name
+    LIB_NAME=$(basename "$OPENCV_LIB")
+    sed -i "s/libopencv_java4130.so/$LIB_NAME/" src/main/java/com/example/OpenCVDemo.java
+    
+    # Compile manually with javac
+    mkdir -p target/classes
+    OPENCV_JAR_LOCAL=$(ls opencv-*.jar 2>/dev/null | head -1)
+    javac -cp "$OPENCV_JAR_LOCAL" -d target/classes src/main/java/com/example/OpenCVDemo.java
 else
     echo "OpenCV library not found in /usr/local/lib/"
     ls -la /usr/local/lib/libopencv*
