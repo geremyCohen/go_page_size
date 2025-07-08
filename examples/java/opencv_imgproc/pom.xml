@@ -14,7 +14,7 @@
         <dependency>
             <groupId>org.opencv</groupId>
             <artifactId>opencv-java-local</artifactId>
-            <version>4.x.x-SNAPSHOT</version>
+            <version>4.10.0</version>
         </dependency>
     </dependencies>
     <build>
