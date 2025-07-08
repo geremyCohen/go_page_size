@@ -112,9 +112,11 @@ else
 fi
 
 # 11. Run the application with OpenCV JAR in classpath
+cd ~/go_page_size/examples/java/opencv_imgproc/
 OPENCV_JAR_LOCAL=$(ls opencv-*.jar 2>/dev/null | head -1)
 if [ -n "$OPENCV_JAR_LOCAL" ]; then
-    java -cp "target/classes:target/dependency/*:$OPENCV_JAR_LOCAL" com.example.OpenCVDemo
+    echo "OpenCV JAR: $OPENCV_JAR_LOCAL"
+    java -cp "target/classes:$OPENCV_JAR_LOCAL" com.example.OpenCVDemo
 else
     echo "OpenCV JAR not found in current directory"
     ls -la *.jar
