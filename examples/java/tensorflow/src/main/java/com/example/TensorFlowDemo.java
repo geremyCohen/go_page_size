@@ -6,6 +6,9 @@ import org.tensorflow.ndarray.Shape;
 import org.tensorflow.types.TFloat32;
 
 public class TensorFlowDemo {
+    // Native method declaration
+    public static native void printCustomMessage();
+    
     static {
         // Load the custom compiled TensorFlow library from specific location
         System.load("/usr/local/lib/libtensorflow_jni.so");
@@ -15,7 +18,10 @@ public class TensorFlowDemo {
         try {
             System.out.println("TensorFlow version: " + TensorFlow.version());
             
-            // Create a simple tensor (this will trigger our custom printf)
+            // Call our custom method to print the message
+            printCustomMessage();
+            
+            // Create a simple tensor
             System.out.println("Creating tensor...");
             try (Tensor<TFloat32> tensor = TFloat32.tensorOf(Shape.of(2, 2))) {
                 tensor.data().setFloat(1.0f, 0, 0);
