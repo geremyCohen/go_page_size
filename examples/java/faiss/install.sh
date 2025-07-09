@@ -16,38 +16,8 @@ if [ ! -d "~/faiss" ]; then
 fi
 cd ~/faiss
 
-# 4. Patch Faiss to add custom printf
-FAISS_SRC=~/faiss/faiss/IndexFlat.cpp
-if [ -f "$FAISS_SRC" ]; then
-    echo "Patching $FAISS_SRC"
-    # Add include for printf at the top
-    sed -i '1i#include <cstdio>' "$FAISS_SRC"
-    
-    # Clean up any previous patches
-    sed -i '/printf.*hello from custom faiss/d' "$FAISS_SRC"
-    sed -i '/fflush(stdout);/d' "$FAISS_SRC"
-    
-    # Clean up any previous patches
-    sed -i '/printf.*hello from custom faiss/d' "$FAISS_SRC"
-    sed -i '/fflush(stdout);/d' "$FAISS_SRC"
-    
-    # Find any constructor and add printf after the opening brace
-    sed -i '/IndexFlat::IndexFlat/,/{/ {
-        /{/ a\    printf("hello from custom faiss\\n"); fflush(stdout);
-    }' "$FAISS_SRC"
-    
-    # Verify the patch was applied
-    if grep -q "hello from custom faiss" "$FAISS_SRC"; then
-        echo "✓ Patch successfully applied"
-        echo "Patch verification:"
-        grep -A2 -B2 "hello from custom faiss" "$FAISS_SRC"
-    else
-        echo "✗ Patch may not have been applied correctly"
-    fi
-else
-    echo "IndexFlat.cpp not found"
-    find ~/faiss/faiss/ -name "*.cpp" | head -5
-fi
+# 4. Skip patching Faiss source - we'll add the message to JNI wrapper instead
+echo "Skipping Faiss source patching - using JNI wrapper approach"
 
 # 5. Build Faiss with Java bindings
 cd ~/faiss
@@ -75,9 +45,11 @@ cat > native/faiss_jni.cpp << 'EOF'
 #include <jni.h>
 #include <faiss/IndexFlat.h>
 #include <iostream>
+#include <cstdio>
 
 extern "C" {
     JNIEXPORT jlong JNICALL Java_com_example_FaissDemo_createIndex(JNIEnv *env, jclass cls, jint dimension) {
+        printf("hello from custom faiss\n"); fflush(stdout);
         faiss::IndexFlatL2* index = new faiss::IndexFlatL2(dimension);
         return reinterpret_cast<jlong>(index);
     }
