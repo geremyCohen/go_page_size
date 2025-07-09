@@ -5,12 +5,15 @@ sudo apt update && sudo apt install -y openjdk-17-jdk maven git cmake build-esse
     python3-pip python3-dev wget libblas-dev liblapack-dev swig libgflags-dev
 
 # 2. Clean up any existing files
-rm -rf ~/faiss
+sudo rm -rf ~/faiss
 rm -rf ~/go_page_size/examples/java/faiss/target
+rm -rf ~/go_page_size/examples/java/faiss/native
 
 # 3. Clone Faiss from source
 cd
-git clone https://github.com/facebookresearch/faiss.git ~/faiss
+if [ ! -d "~/faiss" ]; then
+    git clone https://github.com/facebookresearch/faiss.git ~/faiss
+fi
 cd ~/faiss
 
 # 4. Patch Faiss to add custom printf
