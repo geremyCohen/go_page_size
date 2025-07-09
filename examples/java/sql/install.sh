@@ -7,8 +7,20 @@ sudo apt update && sudo apt install -y openjdk-17-jdk maven git cmake build-esse
 # 2. Clean up any existing files
 sudo rm -rf ~/sqlite
 sudo rm -rf ~/sqlite-build
-rm -rf ~/go_page_size/examples/java/sql/target
-rm -rf ~/go_page_size/examples/java/sql/native
+# Find the project directory dynamically with caching
+CACHE_FILE="$HOME/.sql_project_path_cache"
+if [ -f "$CACHE_FILE" ] && [ -d "$(cat "$CACHE_FILE")" ]; then
+    PROJECT_DIR=$(cat "$CACHE_FILE")
+else
+    PROJECT_DIR=$(find ~ -name "sql" -path "*/examples/java/sql" 2>/dev/null | head -1)
+    if [ -n "$PROJECT_DIR" ]; then
+        echo "$PROJECT_DIR" > "$CACHE_FILE"
+    fi
+fi
+if [ -n "$PROJECT_DIR" ]; then
+    rm -rf "$PROJECT_DIR/target"
+    rm -rf "$PROJECT_DIR/native"
+fi
 
 # 3. Clone SQLite from source
 cd
@@ -34,16 +46,31 @@ sudo ldconfig
 echo "SQLite library installed to /usr/local/lib"
 
 # 7. Create simple JNI wrapper for SQLite
-cd ~/go_page_size/examples/java/sql/
+# Use cached project directory
+CACHE_FILE="$HOME/.sql_project_path_cache"
+if [ -f "$CACHE_FILE" ] && [ -d "$(cat "$CACHE_FILE")" ]; then
+    PROJECT_DIR=$(cat "$CACHE_FILE")
+else
+    PROJECT_DIR=$(find ~ -name "sql" -path "*/examples/java/sql" 2>/dev/null | head -1)
+    if [ -n "$PROJECT_DIR" ]; then
+        echo "$PROJECT_DIR" > "$CACHE_FILE"
+    fi
+fi
+if [ -z "$PROJECT_DIR" ]; then
+    echo "Error: Could not find sql project directory"
+    exit 1
+fi
+cd "$PROJECT_DIR"
 mkdir -p native
 cat > native/sqlite_jni.c << 'EOF'
 #include <jni.h>
 #include <sqlite3.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 JNIEXPORT jlong JNICALL Java_com_example_SQLiteDemo_openDatabase(JNIEnv *env, jclass cls, jstring dbPath) {
-    printf("hello from custom sqlite\n"); fflush(stdout);
+    printf("****** hello from custom sqlite\n"); fflush(stdout);
     
     const char *path = (*env)->GetStringUTFChars(env, dbPath, 0);
     sqlite3 *db;
