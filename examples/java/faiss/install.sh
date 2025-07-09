@@ -27,13 +27,13 @@ if [ -f "$FAISS_SRC" ]; then
     sed -i '/printf.*hello from custom faiss/d' "$FAISS_SRC"
     sed -i '/fflush(stdout);/d' "$FAISS_SRC"
     
-    # Clean up the bad patch first
+    # Clean up any previous patches
     sed -i '/printf.*hello from custom faiss/d' "$FAISS_SRC"
     sed -i '/fflush(stdout);/d' "$FAISS_SRC"
     
-    # Find a function with an opening brace and add printf inside it
-    sed -i '/IndexFlat::IndexFlat.*{$/,/^}$/ {
-        /IndexFlat::IndexFlat.*{$/ a\    printf("hello from custom faiss\\n"); fflush(stdout);
+    # Find any constructor and add printf after the opening brace
+    sed -i '/IndexFlat::IndexFlat/,/{/ {
+        /{/ a\    printf("hello from custom faiss\\n"); fflush(stdout);
     }' "$FAISS_SRC"
     
     # Verify the patch was applied
