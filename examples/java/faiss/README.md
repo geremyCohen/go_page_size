@@ -4,10 +4,11 @@ This project demonstrates loading a custom-compiled Faiss library in Java via JN
 
 ## What it does
 
-1. Creates a simple custom JNI library that prints "hello from custom faiss"
-2. Compiles the custom JNI library with gcc
-3. Creates a Java application that explicitly loads the custom library
-4. Calls the custom native method to verify the custom library is working
+1. Clones Faiss from source
+2. Patches the Faiss IndexFlat constructor to print "hello from custom faiss"
+3. Compiles Faiss from source with the patch
+4. Creates a JNI wrapper that uses the custom Faiss library
+5. Creates a Java application that creates a Faiss index to verify the custom library is working
 
 ## Usage
 
@@ -28,8 +29,10 @@ The script will:
 When running successfully, you should see:
 ```
 Faiss Demo Starting...
+Creating Faiss index...
 hello from custom faiss
-Custom Faiss library loaded successfully!
+Faiss index created successfully!
+Index pointer: 140123456789
 Faiss demo completed successfully!
 ```
 
@@ -37,6 +40,6 @@ The "hello from custom faiss" message confirms your custom JNI library is being 
 
 ## Notes
 
-- Uses a simple custom JNI library instead of full Faiss compilation
-- Demonstrates custom library loading concept without complex Faiss build issues
-- Much faster than compiling Faiss from source
+- Compiles Faiss from source with a custom patch
+- Demonstrates loading custom-compiled Faiss library instead of system version
+- Shows "hello from custom faiss" message when IndexFlat constructor is called
