@@ -2,7 +2,7 @@
 
 # 1. Install system packages
 sudo apt update && sudo apt install -y openjdk-17-jdk maven git cmake build-essential python3 \
-    python3-pip python3-dev wget libblas-dev liblapack-dev swig
+    python3-pip python3-dev wget libblas-dev liblapack-dev swig libgflags-dev
 
 # 2. Clean up any existing files
 rm -rf ~/faiss
@@ -24,9 +24,13 @@ if [ -f "$FAISS_SRC" ]; then
     sed -i '/printf.*hello from custom faiss/d' "$FAISS_SRC"
     sed -i '/fflush(stdout);/d' "$FAISS_SRC"
     
-    # Find IndexFlat constructor and add our custom print
-    sed -i '/IndexFlat::IndexFlat.*int.*MetricType/,/^{$/ {
-        /^{$/ a\    printf("hello from custom faiss\\n"); fflush(stdout);
+    # Clean up the bad patch first
+    sed -i '/printf.*hello from custom faiss/d' "$FAISS_SRC"
+    sed -i '/fflush(stdout);/d' "$FAISS_SRC"
+    
+    # Find a function with an opening brace and add printf inside it
+    sed -i '/IndexFlat::IndexFlat.*{$/,/^}$/ {
+        /IndexFlat::IndexFlat.*{$/ a\    printf("hello from custom faiss\\n"); fflush(stdout);
     }' "$FAISS_SRC"
     
     # Verify the patch was applied
@@ -50,6 +54,8 @@ cmake -DFAISS_ENABLE_PYTHON=OFF \
       -DBUILD_SHARED_LIBS=ON \
       -DCMAKE_BUILD_TYPE=Release \
       -DCMAKE_INSTALL_PREFIX=/usr/local \
+      -DFAISS_ENABLE_C_API=OFF \
+      -DBUILD_TESTING=OFF \
       ..
 make -j$(nproc)
 sudo make install
