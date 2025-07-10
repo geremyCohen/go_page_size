@@ -30,6 +30,8 @@ if [ ! -d "~/jfx" ]; then
     git clone https://github.com/openjdk/jfx.git ~/jfx
 fi
 cd ~/jfx
+# Checkout JavaFX 17 branch which is compatible with Java 17
+git checkout jfx17
 
 # 4. Patch JavaFX to add custom printf
 JFX_SRC=~/jfx/modules/javafx.graphics/src/main/native-prism/prism.c
