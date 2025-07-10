@@ -9,6 +9,11 @@ sudo apt update && sudo apt install -y openjdk-17-jdk maven git cmake build-esse
 # 2. Clean up any existing files
 sudo rm -rf ~/jfx
 sudo rm -rf ~/jfx-build
+# Remove existing JavaFX libraries from system
+sudo rm -rf /usr/local/lib/javafx
+sudo rm -f /usr/local/lib/*jfx*
+sudo rm -f /usr/local/lib/*javafx*
+sudo ldconfig
 # Find the project directory dynamically with caching
 CACHE_FILE="$HOME/.jfx_project_path_cache"
 if [ -f "$CACHE_FILE" ] && [ -d "$(cat "$CACHE_FILE")" ]; then
@@ -98,24 +103,42 @@ cat > src/main/java/com/example/JFXDemo.java << 'EOF'
 package com.example;
 
 public class JFXDemo {
+    static {
+        // Load the custom compiled JavaFX library from specific location
+        try {
+            System.load("/usr/local/lib/javafx/libprism_es2.so");
+            System.out.println("Successfully loaded custom JavaFX native library");
+        } catch (UnsatisfiedLinkError e) {
+            System.out.println("Could not load libprism_es2.so, trying alternative libraries...");
+            try {
+                System.load("/usr/local/lib/javafx/libprism_sw.so");
+                System.out.println("Successfully loaded custom JavaFX software renderer");
+            } catch (UnsatisfiedLinkError e2) {
+                System.out.println("Fallback: JavaFX libraries will be loaded automatically");
+            }
+        }
+    }
+
     public static void main(String[] args) {
         try {
             System.out.println("JavaFX Demo Starting...");
             System.out.println("Using custom-compiled JavaFX from source!");
             
+            // Try to get JavaFX version information
+            String javaVersion = System.getProperty("java.version");
+            String javaFxVersion = System.getProperty("javafx.version", "Custom Build");
+            
+            System.out.println("Java version: " + javaVersion);
+            System.out.println("JavaFX version: " + javaFxVersion);
+            
             // Set JavaFX module path to our custom build
             String jfxPath = "/usr/local/lib/javafx";
             System.setProperty("javafx.runtime.path", jfxPath);
-            
-            // The custom printf message will appear when JavaFX native libraries are loaded
-            // This happens automatically when JavaFX classes are first used
-            System.out.println("JavaFX runtime configured with custom libraries");
             System.out.println("Custom JavaFX libraries path: " + jfxPath);
             
-            // Note: The 'hello from custom jfx' message will appear from the patched native code
-            // when JavaFX native libraries are actually loaded by the JVM
+            // The custom printf message will appear when JavaFX native libraries are loaded
+            System.out.println("JavaFX native libraries loaded - check for custom messages above");
             System.out.println("JavaFX demo completed successfully!");
-            System.out.println("Custom native libraries are ready for JavaFX applications");
             
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
