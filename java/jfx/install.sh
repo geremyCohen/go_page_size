@@ -1,8 +1,8 @@
 #!/bin/bash
 
 echo "=== Installing system packages ==="
-# 1. Install system packages
-sudo apt install -y openjdk-17-jdk openjdk-21-jdk maven git cmake build-essential python3 \
+## 1. Install system packages (use Java 17 only)
+sudo apt update && sudo apt install -y openjdk-17-jdk maven git cmake build-essential python3 \
     python3-pip python3-dev wget libgtk-3-dev libgl1-mesa-dev gradle libx11-dev libxext-dev \
     libxrender-dev libxtst-dev libxi-dev libxrandr-dev libxcursor-dev libxss-dev libxinerama-dev \
     libfreetype6-dev libfontconfig1-dev libasound2-dev
@@ -66,9 +66,15 @@ fi
 echo "=== Building JavaFX from source ==="
 # 5. Build JavaFX from source
 cd ~/jfx
-# Set JAVA_HOME to Java 21 for building JavaFX
-export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-arm64
-echo "Building JavaFX with JAVA_HOME: $JAVA_HOME"
+# Determine JAVA_HOME via the installed javac, ensure Java 17 is used
+JAVA_CMD=$(which javac || true)
+if [ -n "$JAVA_CMD" ]; then
+  export JAVA_HOME=$(dirname $(dirname $(readlink -f "$JAVA_CMD")))
+  echo "Building JavaFX with JAVA_HOME: $JAVA_HOME"
+else
+  echo "Error: javac not found in PATH, please install openjdk-17-jdk"
+  exit 1
+fi
 # Build JavaFX (this may take a while)
 # Clean all Gradle caches and daemon to avoid version conflicts
 rm -rf ~/.gradle
