@@ -109,13 +109,9 @@ public class JFXDemo {
             System.load("/usr/local/lib/javafx/libprism_es2.so");
             System.out.println("Successfully loaded custom JavaFX native library");
         } catch (UnsatisfiedLinkError e) {
-            System.out.println("Could not load libprism_es2.so, trying alternative libraries...");
-            try {
-                System.load("/usr/local/lib/javafx/libprism_sw.so");
-                System.out.println("Successfully loaded custom JavaFX software renderer");
-            } catch (UnsatisfiedLinkError e2) {
-                System.out.println("Fallback: JavaFX libraries will be loaded automatically");
-            }
+            System.err.println("FATAL: Could not load custom JavaFX library: " + e.getMessage());
+            System.err.println("Expected library: /usr/local/lib/javafx/libprism_es2.so");
+            System.exit(1);
         }
     }
 
