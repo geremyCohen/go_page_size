@@ -65,8 +65,11 @@ cd ~/jfx
 export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 echo "Building JavaFX with JAVA_HOME: $JAVA_HOME"
 # Build JavaFX (this may take a while)
+# Clean Gradle cache to avoid version conflicts
+rm -rf ~/.gradle/caches
 chmod +x gradlew
-./gradlew sdk
+# Use Gradle wrapper to ensure correct version
+./gradlew --no-daemon sdk
 
 # 6. Copy JavaFX libraries to system library path
 sudo mkdir -p /usr/local/lib/javafx
