@@ -2,10 +2,18 @@
 
 echo "=== Installing system packages ==="
 ## 1. Install system packages (use Java 17 only)
-sudo apt update && sudo apt install -y openjdk-17-jdk maven git cmake build-essential python3 \
-    python3-pip python3-dev wget libgtk-3-dev libgl1-mesa-dev gradle libx11-dev libxext-dev \
+# 1. Install system packages (purge Java 21, install Java 17 only)
+sudo apt update
+sudo apt purge -y 'openjdk-21-*'
+sudo apt autoremove -y
+sudo apt install -y openjdk-17-jdk maven git cmake build-essential python3 \
+    python3-pip python3-dev wget libgtk-3-dev libgl1-mesa-dev libx11-dev libxext-dev \
     libxrender-dev libxtst-dev libxi-dev libxrandr-dev libxcursor-dev libxss-dev libxinerama-dev \
     libfreetype6-dev libfontconfig1-dev libasound2-dev
+
+# Ensure Java 17 is the default java/javac
+sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java || true
+sudo update-alternatives --set javac /usr/lib/jvm/java-17-openjdk-amd64/bin/javac || true
 
 echo "=== Cleaning up existing files ==="
 # 2. Clean up any existing files
@@ -66,23 +74,34 @@ fi
 echo "=== Building JavaFX from source ==="
 # 5. Build JavaFX from source
 cd ~/jfx
-# Determine JAVA_HOME via the installed javac, ensure Java 17 is used
-JAVA_CMD=$(which javac || true)
-if [ -n "$JAVA_CMD" ]; then
-  export JAVA_HOME=$(dirname $(dirname $(readlink -f "$JAVA_CMD")))
-  echo "Building JavaFX with JAVA_HOME: $JAVA_HOME"
+## Determine and enforce Java 17 for Gradle/Groovy compatibility
+JAVAC_CMD=$(command -v javac || true)
+if [ -n "$JAVAC_CMD" ] && javac -version 2>&1 | grep -qE 'javac (1\.)?17\.'; then
+  export JAVA_HOME=$(dirname $(dirname $(readlink -f "$JAVAC_CMD")))
+elif [ -d /usr/lib/jvm/java-17-openjdk-amd64 ]; then
+  export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+elif [ -d /usr/lib/jvm/java-17-openjdk-arm64 ]; then
+  export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64
 else
-  echo "Error: javac not found in PATH, please install openjdk-17-jdk"
+  echo "Error: Java 17 JDK not found. Please install openjdk-17-jdk and ensure javac 17 is in PATH." >&2
   exit 1
 fi
+export PATH="$JAVA_HOME/bin:$PATH"
+echo "Building JavaFX with JAVA_HOME: $JAVA_HOME"
 # Build JavaFX (this may take a while)
 # Clean all Gradle caches and daemon to avoid version conflicts
 rm -rf ~/.gradle
+# Stop any running Gradle daemon
+chmod +x gradlew
+echo "Stopping any existing Gradle daemons..."
+./gradlew --stop || true
 killall -9 gradle 2>/dev/null || true
 killall -9 java 2>/dev/null || true
-chmod +x gradlew
-# Use Gradle wrapper to ensure correct version
-./gradlew --no-daemon --refresh-dependencies sdk
+echo "Using Java for Gradle build: $JAVA_HOME"
+$JAVA_HOME/bin/java -version
+# Use Gradle wrapper with explicit Java home to ensure correct JVM is used
+echo "Invoking Gradle wrapper with org.gradle.java.home=$JAVA_HOME"
+./gradlew --no-daemon --refresh-dependencies -Dorg.gradle.java.home="$JAVA_HOME" sdk
 
 echo "=== Installing JavaFX libraries ==="
 # 6. Copy JavaFX libraries to system library path
