@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # 1. Install system packages
-sudo apt update && sudo apt install -y openjdk-17-jdk openjdk-21-jdk maven git cmake build-essential python3 \
+sudo apt install -y openjdk-17-jdk openjdk-21-jdk maven git cmake build-essential python3 \
     python3-pip python3-dev wget libgtk-3-dev libgl1-mesa-dev gradle libx11-dev libxext-dev \
     libxrender-dev libxtst-dev libxi-dev libxrandr-dev libxcursor-dev libxss-dev libxinerama-dev \
     libfreetype6-dev libfontconfig1-dev libasound2-dev
-sudo apt update && sudo apt install -y openjdk-17-jdk openjdk-21-jdk maven git cmake build-essential python3 \
+sudo apt install -y openjdk-17-jdk openjdk-21-jdk maven git cmake build-essential python3 \
     python3-pip python3-dev wget libgtk-3-dev libgl1-mesa-dev gradle libx11-dev libxext-dev \
     libxrender-dev libxtst-dev libxi-dev libxrandr-dev libxcursor-dev libxss-dev libxinerama-dev \
     libfreetype6-dev libfontconfig1-dev libasound2-dev
@@ -69,11 +69,13 @@ cd ~/jfx
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-arm64
 echo "Building JavaFX with JAVA_HOME: $JAVA_HOME"
 # Build JavaFX (this may take a while)
-# Clean Gradle cache to avoid version conflicts
-rm -rf ~/.gradle/caches
+# Clean all Gradle caches and daemon to avoid version conflicts
+rm -rf ~/.gradle
+killall -9 gradle 2>/dev/null || true
+killall -9 java 2>/dev/null || true
 chmod +x gradlew
 # Use Gradle wrapper to ensure correct version
-./gradlew --no-daemon sdk
+./gradlew --no-daemon --refresh-dependencies sdk
 
 # 6. Copy JavaFX libraries to system library path
 sudo mkdir -p /usr/local/lib/javafx
