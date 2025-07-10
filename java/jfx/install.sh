@@ -58,6 +58,7 @@ cd ~/jfx
 export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 echo "Building JavaFX with JAVA_HOME: $JAVA_HOME"
 # Build JavaFX (this may take a while)
+chmod +x gradlew
 ./gradlew sdk
 
 # 6. Copy JavaFX libraries to system library path
