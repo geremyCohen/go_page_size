@@ -6,7 +6,6 @@ sudo apt update && sudo apt install -y openjdk-17-jdk maven git cmake build-esse
 
 # 2. Clean up any existing files
 sudo rm -rf ~/libucrypto
-rm -f ~/.libucrypto_project_path_cache
 # Find the project directory dynamically with caching
 CACHE_FILE="$HOME/.libucrypto_project_path_cache"
 if [ -f "$CACHE_FILE" ] && [ -d "$(cat "$CACHE_FILE")" ]; then
