@@ -1,11 +1,13 @@
 #!/bin/bash
 
+echo "=== Installing system packages ==="
 # 1. Install system packages
-sudo apt update && sudo apt install -y openjdk-17-jdk openjdk-21-jdk maven git cmake build-essential python3 \
+sudo apt install -y openjdk-17-jdk openjdk-21-jdk maven git cmake build-essential python3 \
     python3-pip python3-dev wget libgtk-3-dev libgl1-mesa-dev gradle libx11-dev libxext-dev \
     libxrender-dev libxtst-dev libxi-dev libxrandr-dev libxcursor-dev libxss-dev libxinerama-dev \
     libfreetype6-dev libfontconfig1-dev libasound2-dev
 
+echo "=== Cleaning up existing files ==="
 # 2. Clean up any existing files
 sudo rm -rf ~/jfx
 sudo rm -rf ~/jfx-build
@@ -29,6 +31,7 @@ if [ -n "$PROJECT_DIR" ]; then
     rm -rf "$PROJECT_DIR/native"
 fi
 
+echo "=== Cloning JavaFX from source ==="
 # 3. Clone JavaFX from source
 cd
 # Force fresh clone to avoid Gradle cache issues
@@ -38,6 +41,7 @@ cd ~/jfx
 # Checkout JavaFX 17 branch which is compatible with Java 17
 git checkout jfx17
 
+echo "=== Patching JavaFX native code ==="
 # 4. Patch JavaFX to add custom printf
 JFX_SRC=~/jfx/modules/javafx.graphics/src/main/native-prism/prism.c
 if [ ! -f "$JFX_SRC" ]; then
@@ -59,6 +63,7 @@ else
     echo "JavaFX native source not found, will add message to JNI wrapper"
 fi
 
+echo "=== Building JavaFX from source ==="
 # 5. Build JavaFX from source
 cd ~/jfx
 # Set JAVA_HOME to Java 21 for building JavaFX
@@ -73,6 +78,7 @@ chmod +x gradlew
 # Use Gradle wrapper to ensure correct version
 ./gradlew --no-daemon --refresh-dependencies sdk
 
+echo "=== Installing JavaFX libraries ==="
 # 6. Copy JavaFX libraries to system library path
 sudo mkdir -p /usr/local/lib/javafx
 if [ -d "build/sdk/lib" ]; then
@@ -83,6 +89,7 @@ else
     echo "JavaFX build output not found"
 fi
 
+echo "=== Setting up JavaFX runtime environment ==="
 # 7. Setup JavaFX runtime environment
 # Use cached project directory
 CACHE_FILE="$HOME/.jfx_project_path_cache"
@@ -102,6 +109,7 @@ cd "$PROJECT_DIR"
 
 echo "Using custom-compiled JavaFX libraries from ~/jfx/build/sdk"
 
+echo "=== Creating Java application ==="
 # 8. Create the Java application
 mkdir -p src/main/java/com/example
 cat > src/main/java/com/example/JFXDemo.java << 'EOF'
@@ -149,6 +157,7 @@ public class JFXDemo {
 }
 EOF
 
+echo "=== Compiling and running demo ==="
 # 9. Compile and run the demo
 mkdir -p target/classes
 javac -d target/classes src/main/java/com/example/JFXDemo.java
