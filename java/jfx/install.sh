@@ -1,10 +1,14 @@
 #!/bin/bash
 
 # 1. Install system packages
-#sudo apt update && sudo apt install -y openjdk-17-jdk maven git cmake build-essential python3 \
-#    python3-pip python3-dev wget libgtk-3-dev libgl1-mesa-dev gradle libx11-dev libxext-dev \
-#    libxrender-dev libxtst-dev libxi-dev libxrandr-dev libxcursor-dev libxss-dev libxinerama-dev \
-#    libfreetype6-dev libfontconfig1-dev libasound2-dev
+sudo apt update && sudo apt install -y openjdk-17-jdk openjdk-21-jdk maven git cmake build-essential python3 \
+    python3-pip python3-dev wget libgtk-3-dev libgl1-mesa-dev gradle libx11-dev libxext-dev \
+    libxrender-dev libxtst-dev libxi-dev libxrandr-dev libxcursor-dev libxss-dev libxinerama-dev \
+    libfreetype6-dev libfontconfig1-dev libasound2-dev
+sudo apt update && sudo apt install -y openjdk-17-jdk openjdk-21-jdk maven git cmake build-essential python3 \
+    python3-pip python3-dev wget libgtk-3-dev libgl1-mesa-dev gradle libx11-dev libxext-dev \
+    libxrender-dev libxtst-dev libxi-dev libxrandr-dev libxcursor-dev libxss-dev libxinerama-dev \
+    libfreetype6-dev libfontconfig1-dev libasound2-dev
 
 # 2. Clean up any existing files
 sudo rm -rf ~/jfx
@@ -61,8 +65,8 @@ fi
 
 # 5. Build JavaFX from source
 cd ~/jfx
-# Set JAVA_HOME for Gradle
-export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
+# Set JAVA_HOME to Java 21 for building JavaFX
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-arm64
 echo "Building JavaFX with JAVA_HOME: $JAVA_HOME"
 # Build JavaFX (this may take a while)
 # Clean Gradle cache to avoid version conflicts
