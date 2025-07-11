@@ -4,7 +4,7 @@
 clean=true
 
 # 1. Install system packages
-sudo apt update && sudo apt install -y openjdk-17-jdk maven git cmake build-essential wget bazel
+sudo apt update && sudo apt install -y openjdk-17-jdk maven git cmake build-essential wget tar
 
 # 2. Clean up existing files if requested
 if [ "$clean" = true ]; then
@@ -13,20 +13,26 @@ if [ "$clean" = true ]; then
   rm -rf native src pom.xml target
 fi
 
-## 2. Clone & build TensorFlow C shared library
-TF_SRC_DIR="$HOME/tensorflow"
-if [ ! -d "$TF_SRC_DIR" ]; then
-  echo "Cloning TensorFlow source into $TF_SRC_DIR..."
-  git clone https://github.com/tensorflow/tensorflow.git "$TF_SRC_DIR"
+## 2. Download & install prebuilt TensorFlow C library
+if [ "$clean" = true ]; then
+  echo "Removing previous TensorFlow C library..."
+  sudo rm -f /usr/local/lib/libtensorflow.so*
+  sudo rm -rf /usr/local/include/tensorflow /usr/local/include/tsl
 fi
-cd "$TF_SRC_DIR"
-# Optional: checkout a specific version for reproducibility
-git checkout v2.15.0 || true
-echo "Building TensorFlow shared library... (this may take a while)"
-bazel build --config=opt //tensorflow:libtensorflow.so
-sudo cp bazel-bin/tensorflow/libtensorflow.so /usr/local/lib/
+ARCH=$(uname -m)
+if [ "$ARCH" = "x86_64" ]; then
+  URL="https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-2.15.0.tar.gz"
+elif [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; then
+  URL="https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-aarch64-2.15.0.tar.gz"
+else
+  echo "Unsupported architecture: $ARCH"
+  exit 1
+fi
+echo "Downloading TensorFlow C library from $URL..."
+wget -qO /tmp/libtensorflow.tar.gz "$URL"
+echo "Extracting to /usr/local..."
+sudo tar -C /usr/local -xzf /tmp/libtensorflow.tar.gz
 sudo ldconfig
-cd - >/dev/null
 
 # 3. Compile custom JNI wrapper
 mkdir -p native
@@ -50,7 +56,7 @@ echo "Using JAVA_HOME: $JAVA_HOME"
 # 5. Compile the JNI shared library, linking against TensorFlow C library
 gcc -shared -fPIC \
     -I"$JAVA_HOME/include" -I"$JAVA_HOME/include/linux" \
-    -I"$TF_SRC_DIR" \
+    -I/usr/local/include \
     native/tensorflow_custom.c \
     -L/usr/local/lib -ltensorflow -o native/libtensorflow_custom.so
 
@@ -83,13 +89,7 @@ public class TensorFlowDemo {
         String msg = tfHelloWorld();
         System.out.println("Native method returned: " + msg);
 
-        // Print Java TensorFlow version via Java API
-        try {
-            String version = org.tensorflow.TensorFlow.version();
-            System.out.println("Java TensorFlow version: " + version);
-        } catch (Throwable t) {
-            System.err.println("Warning: Unable to retrieve TensorFlow Java version: " + t.getMessage());
-        }
+        // (Optional) Java API version retrieval skipped; using native TF C API version above
 
         System.out.println("TensorFlow Demo completed successfully!");
     }
