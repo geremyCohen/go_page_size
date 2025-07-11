@@ -4,20 +4,25 @@ echo "=== Installing system packages ==="
 ## 1. Install system packages (use Java 17 only)
 # 1a. Update package list
 sudo apt update
-# 1b. Purge any Java 21 remnants
+# Purge any Java 21 remnants
 sudo apt purge -y 'openjdk-21-*'
-sudo apt purge -y 'openjdk-21-*'
- # 1c. Remove leftover dependencies
- sudo apt autoremove -y
- # 1d. Install Java 17 and required build tools
- sudo apt install -y openjdk-17-jdk maven git cmake build-essential python3 \
-     python3-pip python3-dev wget libgtk-3-dev libgl1-mesa-dev libx11-dev libxext-dev \
-     libxrender-dev libxtst-dev libxi-dev libxrandr-dev libxcursor-dev libxss-dev libxinerama-dev \
-     libfreetype6-dev libfontconfig1-dev libasound2-dev
+# Remove leftover dependencies
+sudo apt autoremove -y
+# Install Java 17 and required build tools
+sudo apt install -y openjdk-17-jdk gradle maven git cmake build-essential python3 \
+    python3-pip python3-dev wget libgtk-3-dev libgl1-mesa-dev \
+    libx11-dev libxext-dev libxrender-dev libxtst-dev libxi-dev libxrandr-dev \
+    libxcursor-dev libxss-dev libxinerama-dev libfreetype6-dev \
+    libfontconfig1-dev libasound2-dev
 
-# Ensure Java 17 is the default java/javac
-sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java || true
-sudo update-alternatives --set javac /usr/lib/jvm/java-17-openjdk-amd64/bin/javac || true
+# Ensure Java 17 is the system default for java/javac
+if [ -d /usr/lib/jvm/java-17-openjdk-amd64 ]; then
+  sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+  sudo update-alternatives --set javac /usr/lib/jvm/java-17-openjdk-amd64/bin/javac
+elif [ -d /usr/lib/jvm/java-17-openjdk-arm64 ]; then
+  sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-arm64/bin/java
+  sudo update-alternatives --set javac /usr/lib/jvm/java-17-openjdk-arm64/bin/javac
+fi
 
 echo "=== Cleaning up existing files ==="
 # 2. Clean up any existing files
@@ -93,19 +98,10 @@ fi
 export PATH="$JAVA_HOME/bin:$PATH"
 echo "Building JavaFX with JAVA_HOME: $JAVA_HOME"
 # Build JavaFX (this may take a while)
-# Clean all Gradle caches and daemon to avoid version conflicts
+# Clean any existing Gradle caches
 rm -rf ~/.gradle
-# Stop any running Gradle daemon
-chmod +x gradlew
-echo "Stopping any existing Gradle daemons..."
-./gradlew --stop || true
-killall -9 gradle 2>/dev/null || true
-killall -9 java 2>/dev/null || true
-echo "Using Java for Gradle build: $JAVA_HOME"
-$JAVA_HOME/bin/java -version
-# Use Gradle wrapper with explicit Java home to ensure correct JVM is used
-echo "Invoking Gradle wrapper with org.gradle.java.home=$JAVA_HOME"
-./gradlew --no-daemon --refresh-dependencies -Dorg.gradle.java.home="$JAVA_HOME" sdk
+echo "Using system Gradle to build JavaFX with JAVA_HOME=$JAVA_HOME"
+gradle --no-daemon --refresh-dependencies -Dorg.gradle.java.home="$JAVA_HOME" sdk
 
 echo "=== Installing JavaFX libraries ==="
 # 6. Copy JavaFX libraries to system library path
