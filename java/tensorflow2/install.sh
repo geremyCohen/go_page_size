@@ -8,7 +8,7 @@ set -e
 #-------------------------------------------------------------------
 
 # Toggle cleanup of previous builds (set to false to speed up incremental runs)
-clean=false
+clean=true
 
 # 1. Install system packages and build tools (skip if clean=false)
 if [ "$clean" = true ]; then
@@ -48,16 +48,19 @@ if [ "$clean" = true ]; then
   sudo rm -rf /usr/local/include/tensorflow /usr/local/include/tsl
 fi
 
-echo "Cloning TensorFlow v2.15.0 source..."
-## 4. Clone TensorFlow source (v2.15.0) (skip if clean=false)
-if [ "$clean" = true ]; then
-  echo "Cloning TensorFlow v2.15.0 source..."
-  git clone --branch v2.15.0 https://github.com/tensorflow/tensorflow.git tensorflow
-  git clone --branch v2.15.0 https://github.com/tensorflow/tensorflow.git tensorflow
+# 4. Clone TensorFlow source (v2.15.0) with local cache
+TF_VER=2.15.0
+TF_CACHE="/tmp/clones/tensorflow_v${TF_VER}"
+mkdir -p /tmp/clones
+if [ -d "$TF_CACHE" ]; then
+  echo "Copying TensorFlow v${TF_VER} from cache..."
+  cp -R "$TF_CACHE" tensorflow
 else
-  echo "Skipping clone (clean=false), assuming ./tensorflow exists"
+  echo "Cloning TensorFlow v${TF_VER} source..."
+  git clone --depth 1 --branch v${TF_VER} https://github.com/tensorflow/tensorflow.git tensorflow
+  echo "Caching TensorFlow source to $TF_CACHE..."
+  cp -R tensorflow "$TF_CACHE"
 fi
-
 cd tensorflow
 
 # 5. Patch denormal.cc to include <cstdint> for ARM64
