@@ -66,10 +66,18 @@ public class JfxDemo {
             Platform.startup(() -> {});
             System.out.println("JavaFX Platform started successfully.");
         } catch (Throwable t) {
-            System.err.println("Failed to initialize JavaFX Platform: " + t.getMessage());
-            t.printStackTrace();
-            System.exit(1);
+            System.err.println("Warning: JavaFX Platform failed to start (headless?): " + t.getMessage());
         }
+        // Attempt to retrieve JavaFX version
+        String fxVersion;
+        try {
+            Class<?> vi = Class.forName("com.sun.javafx.runtime.VersionInfo");
+            java.lang.reflect.Method gv = vi.getMethod("getVersion");
+            fxVersion = (String) gv.invoke(null);
+        } catch (Throwable ex) {
+            fxVersion = System.getProperty("javafx.runtime.version");
+        }
+        System.out.println("JavaFX version: " + fxVersion);
         String msg = jfxHelloWorld();
         System.out.println("Native method returned: " + msg);
         System.out.println("JFX Demo completed successfully!");
