@@ -9,7 +9,7 @@ sudo apt purge -y 'openjdk-21-*'
 # Remove leftover dependencies
 sudo apt autoremove -y
 # Install Java 17 and required build tools
-sudo apt install -y openjdk-17-jdk gradle maven git cmake build-essential python3 \
+sudo apt install -y openjdk-17-jdk maven git cmake build-essential python3 \
     python3-pip python3-dev wget libgtk-3-dev libgl1-mesa-dev \
     libx11-dev libxext-dev libxrender-dev libxtst-dev libxi-dev libxrandr-dev \
     libxcursor-dev libxss-dev libxinerama-dev libfreetype6-dev \
@@ -57,6 +57,12 @@ git clone https://github.com/openjdk/jfx.git ~/jfx
 cd ~/jfx
 # Checkout JavaFX 17 branch which is compatible with Java 17
 git checkout jfx17
+## 4a. Update Gradle wrapper to a newer version (>=6.3) for compatibility
+WRAPPER_PROP=gradle/wrapper/gradle-wrapper.properties
+if [ -f "$WRAPPER_PROP" ]; then
+  echo "Updating Gradle wrapper distribution in $WRAPPER_PROP"
+  sed -i 's|distributionUrl=.*|distributionUrl=https://services.gradle.org/distributions/gradle-6.9-bin.zip|' "$WRAPPER_PROP"
+fi
 
 echo "=== Patching JavaFX native code ==="
 # 4. Patch JavaFX to add custom printf
@@ -100,8 +106,12 @@ echo "Building JavaFX with JAVA_HOME: $JAVA_HOME"
 # Build JavaFX (this may take a while)
 # Clean any existing Gradle caches
 rm -rf ~/.gradle
-echo "Using system Gradle to build JavaFX with JAVA_HOME=$JAVA_HOME"
-gradle --no-daemon --refresh-dependencies -Dorg.gradle.java.home="$JAVA_HOME" sdk
+# Ensure the Gradle wrapper is executable
+chmod +x gradlew
+echo "Stopping any existing Gradle daemons..."
+./gradlew --stop || true
+echo "Building JavaFX via Gradle wrapper with JAVA_HOME=$JAVA_HOME"
+./gradlew --no-daemon --refresh-dependencies -Dorg.gradle.java.home="$JAVA_HOME" sdk
 
 echo "=== Installing JavaFX libraries ==="
 # 6. Copy JavaFX libraries to system library path
