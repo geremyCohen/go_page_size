@@ -8,7 +8,7 @@ set -e
 #-------------------------------------------------------------------
 
 # Toggle cleanup of previous builds (set to false to speed up incremental runs)
-clean=true
+clean=false
 
 # 1. Install system packages and build tools (skip if clean=false)
 if [ "$clean" = true ]; then
@@ -49,15 +49,15 @@ if [ "$clean" = true ]; then
 fi
 
 echo "Cloning TensorFlow v2.15.0 source..."
-git clone --branch v2.15.0 https://github.com/tensorflow/tensorflow.git tensorflow
 ## 4. Clone TensorFlow source (v2.15.0) (skip if clean=false)
 if [ "$clean" = true ]; then
   echo "Cloning TensorFlow v2.15.0 source..."
   git clone --branch v2.15.0 https://github.com/tensorflow/tensorflow.git tensorflow
+  git clone --branch v2.15.0 https://github.com/tensorflow/tensorflow.git tensorflow
 else
   echo "Skipping clone (clean=false), assuming ./tensorflow exists"
 fi
-cd tensorflow
+
 cd tensorflow
 
 # 5. Patch denormal.cc to include <cstdint> for ARM64
