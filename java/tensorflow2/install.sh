@@ -4,7 +4,7 @@
 clean=true
 
 # 1. Install system packages
-sudo apt update && sudo apt install -y openjdk-17-jdk maven git cmake build-essential wget curl tar
+sudo apt update && sudo apt install -y openjdk-17-jdk maven git cmake build-essential wget curl tar libtensorflow-c-dev
 
 # 2. Clean up existing files if requested
 if [ "$clean" = true ]; then
@@ -13,40 +13,13 @@ if [ "$clean" = true ]; then
   rm -rf native src pom.xml target
 fi
 
-## 2. Build TensorFlow C library from source on ARM64
-ARCH=$(uname -m)
-if [ "$ARCH" != "aarch64" ] && [ "$ARCH" != "arm64" ]; then
-  echo "Unsupported architecture: $ARCH (only ARM64 supported)"
+## 2. Verify TensorFlow C library headers and lib from package
+if [ ! -f /usr/include/tensorflow/c/c_api.h ]; then
+  echo "Error: TensorFlow C headers not found; please install libtensorflow-c-dev"
   exit 1
 fi
-# Install Bazelisk if Bazel is missing
-if ! command -v bazel &>/dev/null; then
-  echo "Installing Bazelisk for ARM64..."
-  curl -fSL https://github.com/bazelbuild/bazelisk/releases/latest/download/bazelisk-linux-arm64 -o bazel
-  chmod +x bazel
-  sudo mv bazel /usr/local/bin/bazel
-fi
-# Clone TensorFlow source if needed
-TF_SRC="$HOME/tensorflow"
-if [ ! -d "$TF_SRC" ]; then
-  echo "Cloning TensorFlow source to $TF_SRC..."
-  git clone https://github.com/tensorflow/tensorflow.git "$TF_SRC"
-fi
-cd "$TF_SRC"
-git checkout v2.15.0 || true
-echo "Building TensorFlow C library (this may take several minutes)..."
-bazel build -c opt //tensorflow:libtensorflow.so
-echo "Installing built libtensorflow.so..."
-sudo cp bazel-bin/tensorflow/libtensorflow.so /usr/local/lib/
-echo "Installing TensorFlow C headers..."
-sudo mkdir -p /usr/local/include/tensorflow
-sudo cp -r tensorflow/c /usr/local/include/tensorflow/
-sudo cp -r tensorflow/tsl /usr/local/include/
-cd - >/dev/null
-sudo ldconfig
-# verify headers
-if [ ! -f /usr/local/include/tensorflow/c/c_api.h ]; then
-  echo "Error: TensorFlow C headers not found under /usr/local/include/tensorflow/c"
+if [ ! -f /usr/lib/libtensorflow.so ]; then
+  echo "Error: TensorFlow C library not found; please install libtensorflow-c-dev"
   exit 1
 fi
 
