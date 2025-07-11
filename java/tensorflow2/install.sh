@@ -13,26 +13,60 @@ if [ "$clean" = true ]; then
   rm -rf native src pom.xml target
 fi
 
-## 2. Download & install prebuilt TensorFlow C library
-if [ "$clean" = true ]; then
-  echo "Removing previous TensorFlow C library..."
-  sudo rm -f /usr/local/lib/libtensorflow.so*
-  sudo rm -rf /usr/local/include/tensorflow /usr/local/include/tsl
-fi
+## 2. Fetch TensorFlow C library (prebuilt for x86_64 or build from source on ARM)
 ARCH=$(uname -m)
 if [ "$ARCH" = "x86_64" ]; then
+  # Prebuilt binary for x86_64
+  if [ "$clean" = true ]; then
+    echo "Removing previous TensorFlow C library..."
+    sudo rm -f /usr/local/lib/libtensorflow.so*
+    sudo rm -rf /usr/local/include/tensorflow
+  fi
   URL="https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-2.15.0.tar.gz"
+  echo "Downloading TensorFlow C library from $URL..."
+  if ! curl -fSL "$URL" -o /tmp/libtensorflow.tar.gz; then
+    echo "Error: failed to download TensorFlow C library"
+    exit 1
+  fi
+  echo "Extracting to /usr/local..."
+  sudo tar -C /usr/local -xzf /tmp/libtensorflow.tar.gz
+  sudo ldconfig
 elif [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; then
-  URL="https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-aarch64-2.15.0.tar.gz"
+  # Build from source on ARM platforms
+  if ! command -v bazel &>/dev/null; then
+    echo "Installing Bazelisk for ARM64..."
+    curl -fSL https://github.com/bazelbuild/bazelisk/releases/latest/download/bazelisk-linux-arm64 -o bazel
+    chmod +x bazel
+    sudo mv bazel /usr/local/bin/bazel
+  fi
+  TF_SRC="$HOME/tensorflow"
+  if [ ! -d "$TF_SRC" ]; then
+    echo "Cloning TensorFlow source to $TF_SRC..."
+    git clone https://github.com/tensorflow/tensorflow.git "$TF_SRC"
+  fi
+  cd "$TF_SRC"
+  git checkout v2.15.0 || true
+  echo "Building TensorFlow C library (this may take several minutes)..."
+  bazel build --config=opt //tensorflow:libtensorflow.so
+  echo "Installing built libtensorflow.so and headers..."
+  sudo cp bazel-bin/tensorflow/libtensorflow.so /usr/local/lib/
+  sudo mkdir -p /usr/local/include/tensorflow
+  sudo cp -r tensorflow/c /usr/local/include/tensorflow/
+  # Include TSL C headers
+  if [ -d tensorflow/tsl ]; then
+    sudo cp -r tensorflow/tsl /usr/local/include/tensorflow/
+  fi
+  cd - >/dev/null
+  sudo ldconfig
 else
   echo "Unsupported architecture: $ARCH"
   exit 1
 fi
-echo "Downloading TensorFlow C library from $URL..."
-wget -qO /tmp/libtensorflow.tar.gz "$URL"
-echo "Extracting to /usr/local..."
-sudo tar -C /usr/local -xzf /tmp/libtensorflow.tar.gz
-sudo ldconfig
+# verify headers
+if [ ! -f /usr/local/include/tensorflow/c/c_api.h ]; then
+  echo "Error: TensorFlow C headers not found under /usr/local/include/tensorflow/c"
+  exit 1
+fi
 
 # 3. Compile custom JNI wrapper
 mkdir -p native
