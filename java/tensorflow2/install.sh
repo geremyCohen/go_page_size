@@ -1,69 +1,71 @@
 #!/usr/bin/env bash
 set -e
 
+# TensorFlow C API JNI Demo Installer for ARM64
 # Toggle cleanup of previous builds (set to false to skip cleanup)
 clean=true
 
-# 1. Install system packages and build tools
-sudo apt update
-sudo apt install -y \
-    openjdk-17-jdk maven git cmake build-essential python3-dev python3-pip \
-    wget curl zip zlib1g-dev clang
+# 0. Verify required commands
+for cmd in bazel clang java gcc git python3; do
+  if ! command -v "$cmd" &> /dev/null; then
+    echo "Error: '$cmd' command not found. Please install it before running this script."
+    exit 1
+  fi
+done
 
-# 2. Clean up previous artifacts if requested
+# 1. Clean up previous artifacts if requested
 if [ "$clean" = true ]; then
-  echo "Cleaning up previous TensorFlow custom JNI build..."
+  echo "Cleaning up previous build artifacts..."
   rm -rf native src target tensorflow
-  sudo rm -f /usr/local/lib/libtensorflow.so* /usr/local/lib/libtensorflow_custom.so
+  sudo rm -f /usr/local/lib/libtensorflow.so*
+  sudo rm -f /usr/local/lib/libtensorflow_custom.so
   sudo rm -rf /usr/local/include/tensorflow /usr/local/include/tsl
 fi
 
-# 3. Clone TensorFlow source (v2.15.0)
+# 2. Clone TensorFlow source (v2.15.0)
+echo "Cloning TensorFlow v2.15.0 source..."
 git clone --depth 1 --branch v2.15.0 https://github.com/tensorflow/tensorflow.git tensorflow
 cd tensorflow
 
-# Patch denormal.cc to include <cstdint> for ARM64 build
-echo "Patching denormal.cc to include <cstdint>..."
-sed -i '/#include "tsl\/platform\/platform.h"/a#include <cstdint>' tsl/platform/denormal.cc
+# 3. Patch denormal.cc to include <cstdint> for ARM64 build
+echo "Patching 'tsl/platform/denormal.cc' to include <cstdint>..."
+sed -i '1i#include <cstdint>' tsl/platform/denormal.cc
 
-# 4. Configure build environment non-interactively
+# 4. Configure TensorFlow build non-interactively
+echo "Configuring TensorFlow build..."
 export PYTHON_BIN_PATH="$(which python3)"
 export USE_DEFAULT_PYTHON_LIB_PATH=1
 export TF_NEED_CUDA=0
-export TF_NEED_ROCM=0
-export TF_NEED_OPENCL=0
 export TF_DOWNLOAD_CLANG=0
 export TF_NEED_CLANG=0
-export CC=gcc
-export CXX=g++
+export TF_NEED_ROCM=0
+export TF_NEED_OPENCL=0
 export TF_SET_ANDROID_WORKSPACE=0
 yes "" | ./configure
 
-# 5. Build TensorFlow C shared library (monolithic config)
-echo "Building TensorFlow C library (ARM64)..."
-bazel build -c opt \
-    --config=monolithic \
-    --linkopt=-Wl,--stub-group-size=0x2000 \
-    //tensorflow:libtensorflow.so
+# 5. Build TensorFlow C shared library (monolithic)
+echo "Building libtensorflow.so (this may take many minutes)..."
+bazel build -c opt --config=monolithic //tensorflow:libtensorflow.so
 
 # 6. Install TensorFlow C library and headers
-echo "Installing TensorFlow C API to /usr/local..."
+echo "Installing TensorFlow C library and headers to /usr/local..."
 sudo cp bazel-bin/tensorflow/libtensorflow.so /usr/local/lib/
 sudo mkdir -p /usr/local/include/tensorflow
 sudo cp -r tensorflow/c /usr/local/include/tensorflow/
 sudo mkdir -p /usr/local/include/tsl
-sudo cp -r tensorflow/tsl /usr/local/include/
+sudo cp -r tensorflow/tsl /usr/local/include/tsl/
 cd ..
 sudo ldconfig
 
-# 7. Create JNI wrapper invoking the real TF_C_API
+# 7. Generate JNI wrapper source
+echo "Generating JNI wrapper source..."
 mkdir -p native src/main/java/com/example target/classes
 cat > native/tensorflow_custom.c << 'EOF'
 #include <jni.h>
 #include <stdio.h>
 #include <tensorflow/c/c_api.h>
 
-// Calls TF_Version() from the real TensorFlow C library
+// Calls TF_Version() from libtensorflow.so
 JNIEXPORT jstring JNICALL Java_com_example_TensorFlowDemo_version(JNIEnv *env, jclass cls) {
     const char* ver = TF_Version();
     printf("Hello from TensorFlow C library! Version: %s\n", ver);
@@ -73,8 +75,9 @@ JNIEXPORT jstring JNICALL Java_com_example_TensorFlowDemo_version(JNIEnv *env, j
 EOF
 
 # 8. Compile JNI shared library
+echo "Compiling JNI shared library..."
 JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
-echo "Using JAVA_HOME: $JAVA_HOME"
+echo "JAVA_HOME: $JAVA_HOME"
 gcc -shared -fPIC \
     -I"$JAVA_HOME/include" -I"$JAVA_HOME/include/linux" \
     -I"/usr/local/include" \
@@ -83,18 +86,20 @@ gcc -shared -fPIC \
     -o native/libtensorflow_custom.so
 
 # 9. Install JNI library
+echo "Installing JNI library to /usr/local/lib..."
 sudo cp native/libtensorflow_custom.so /usr/local/lib/
 sudo ldconfig
 
 # 10. Create Java application source
+echo "Generating Java demo source..."
 cat > src/main/java/com/example/TensorFlowDemo.java << 'EOF'
 package com.example;
 
 public class TensorFlowDemo {
     static {
-        String libPath = "/usr/local/lib/libtensorflow_custom.so";
-        System.load(libPath);
-        System.out.println("Loaded TensorFlow C library from: " + libPath);
+        String lib = "/usr/local/lib/libtensorflow_custom.so";
+        System.load(lib);
+        System.out.println("Loaded TensorFlow C library from: " + lib);
     }
 
     public static native String version();
