@@ -2,7 +2,7 @@
     set -e
 
     # Only toggle cleanup of JNI/Java artifacts
-    clean=false
+    clean=true
 
     # 1) Clean old JNI artifacts
     echo "Cleaning JNI artifacts..."
