@@ -8,31 +8,25 @@ clean=true
 sudo apt update
 sudo apt install -y \
     openjdk-17-jdk maven git cmake build-essential python3-dev python3-pip \
-    wget curl zip zlib1g-dev clang
-
-# Ensure Bazel is available via Bazelisk for ARM64
-export PATH="/usr/local/bin:$PATH"
-if ! command -v bazel &>/dev/null; then
-  echo "Installing Bazelisk for ARM64..."
-  curl -fsSL https://github.com/bazelbuild/bazelisk/releases/latest/download/bazelisk-linux-arm64 -o bazel
-  chmod +x bazel
-  sudo mv bazel /usr/local/bin/bazel
-fi
+    wget curl zip zlib1g-dev clang bazel
 
 # 2. Clean up previous artifacts if requested
 if [ "$clean" = true ]; then
   echo "Cleaning up previous TensorFlow custom JNI build..."
   rm -rf native src target tensorflow
+  sudo rm -f /usr/local/lib/libtensorflow.so* /usr/local/lib/libtensorflow_custom.so
+  sudo rm -rf /usr/local/include/tensorflow /usr/local/include/tsl
 fi
 
 # 3. Clone TensorFlow source (v2.15.0)
 git clone --depth 1 --branch v2.15.0 https://github.com/tensorflow/tensorflow.git tensorflow
 cd tensorflow
-# Pin Bazel version to 6.1.0 via bazelisk config to avoid Bazel 8+ WORKSPACE issues
-echo "6.1.0" > .bazelversion
+
+# Patch denormal.cc to include <cstdint> for ARM64 build
+echo "Patching denormal.cc to include <cstdint>..."
+sed -i '/#include "tsl\/platform\/platform.h"/a#include <cstdint>' tsl/platform/denormal.cc
 
 # 4. Configure build environment non-interactively
-# 5. Configure TensorFlow build non-interactively
 export PYTHON_BIN_PATH="$(which python3)"
 export USE_DEFAULT_PYTHON_LIB_PATH=1
 export TF_NEED_CUDA=0
@@ -45,28 +39,24 @@ export CXX=g++
 export TF_SET_ANDROID_WORKSPACE=0
 yes "" | ./configure
 
-# 5. Build TensorFlow C shared library (monolithic, use ld.bfd)
+# 5. Build TensorFlow C shared library (monolithic config)
 echo "Building TensorFlow C library (ARM64)..."
 bazel build -c opt \
     --config=monolithic \
-    --linkopt=-fuse-ld=bfd \
+    --linkopt=-Wl,--stub-group-size=0x2000 \
     //tensorflow:libtensorflow.so
 
 # 6. Install TensorFlow C library and headers
 echo "Installing TensorFlow C API to /usr/local..."
 sudo cp bazel-bin/tensorflow/libtensorflow.so /usr/local/lib/
 sudo mkdir -p /usr/local/include/tensorflow
-# Copy C API headers from the nested tensorflow folder
-sudo cp -r tensorflow/tensorflow/c /usr/local/include/tensorflow/
-# Copy TSL C headers for tf_status.h
-if [ -d tensorflow/tsl/c ]; then
-  sudo mkdir -p /usr/local/include/tsl
-  sudo cp -r tensorflow/tsl/c /usr/local/include/tsl/
-fi
+sudo cp -r tensorflow/c /usr/local/include/tensorflow/
+sudo mkdir -p /usr/local/include/tsl
+sudo cp -r tensorflow/tsl /usr/local/include/
 cd ..
 sudo ldconfig
 
-# 7. Create JNI wrapper invoking real TF_C_API
+# 7. Create JNI wrapper invoking the real TF_C_API
 mkdir -p native src/main/java/com/example target/classes
 cat > native/tensorflow_custom.c << 'EOF'
 #include <jni.h>
@@ -87,9 +77,9 @@ JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
 echo "Using JAVA_HOME: $JAVA_HOME"
 gcc -shared -fPIC \
     -I"$JAVA_HOME/include" -I"$JAVA_HOME/include/linux" \
-    -I/usr/local/include \
+    -I"/usr/local/include" \
     native/tensorflow_custom.c \
-    -L/usr/local/lib -ltensorflow \
+    -L"/usr/local/lib" -ltensorflow \
     -o native/libtensorflow_custom.so
 
 # 9. Install JNI library
