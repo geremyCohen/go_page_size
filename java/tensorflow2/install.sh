@@ -28,13 +28,15 @@ sudo apt install -y \
     apt-transport-https \
     gnupg
 
-# 2. Install Bazel 6.1.0 via Google APT repository
 echo "deb [arch=arm64] https://storage.googleapis.com/bazel-apt stable jdk1.8" \
-    | sudo tee /etc/apt/sources.list.d/bazel.list
-curl https://bazel.build/bazel-release.pub.gpg \
-    | sudo apt-key add -
-sudo apt update
-sudo apt install -y bazel-6.1.0
+## 2. Ensure Bazel is available via Bazelisk (ARM64)
+export PATH="/usr/local/bin:$PATH"
+if ! command -v bazel &>/dev/null; then
+  echo "Installing Bazelisk (Bazel launcher) for ARM64..."
+  curl -fsSL https://github.com/bazelbuild/bazelisk/releases/latest/download/bazelisk-linux-arm64 -o bazel
+  chmod +x bazel
+  sudo mv bazel /usr/local/bin/bazel
+fi
 
 # 3. Clean up previous artifacts if requested
 if [ "$clean" = true ]; then
