@@ -13,55 +13,37 @@ if [ "$clean" = true ]; then
   rm -rf native src pom.xml target
 fi
 
-## 2. Fetch TensorFlow C library (prebuilt for x86_64 or build from source on ARM)
+## 2. Build TensorFlow C library from source on ARM64
 ARCH=$(uname -m)
-if [ "$ARCH" = "x86_64" ]; then
-  # Prebuilt binary for x86_64
-  if [ "$clean" = true ]; then
-    echo "Removing previous TensorFlow C library..."
-    sudo rm -f /usr/local/lib/libtensorflow.so*
-    sudo rm -rf /usr/local/include/tensorflow
-  fi
-  URL="https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-2.15.0.tar.gz"
-  echo "Downloading TensorFlow C library from $URL..."
-  if ! curl -fSL "$URL" -o /tmp/libtensorflow.tar.gz; then
-    echo "Error: failed to download TensorFlow C library"
-    exit 1
-  fi
-  echo "Extracting to /usr/local..."
-  sudo tar -C /usr/local -xzf /tmp/libtensorflow.tar.gz
-  sudo ldconfig
-elif [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; then
-  # Build from source on ARM platforms
-  if ! command -v bazel &>/dev/null; then
-    echo "Installing Bazelisk for ARM64..."
-    curl -fSL https://github.com/bazelbuild/bazelisk/releases/latest/download/bazelisk-linux-arm64 -o bazel
-    chmod +x bazel
-    sudo mv bazel /usr/local/bin/bazel
-  fi
-  TF_SRC="$HOME/tensorflow"
-  if [ ! -d "$TF_SRC" ]; then
-    echo "Cloning TensorFlow source to $TF_SRC..."
-    git clone https://github.com/tensorflow/tensorflow.git "$TF_SRC"
-  fi
-  cd "$TF_SRC"
-  git checkout v2.15.0 || true
-  echo "Building TensorFlow C library (this may take several minutes)..."
-  bazel build -c opt //tensorflow:libtensorflow.so
-  echo "Installing built libtensorflow.so..."
-  sudo cp bazel-bin/tensorflow/libtensorflow.so /usr/local/lib/
-  echo "Installing TensorFlow C headers..."
-  # Copy C API headers
-  sudo mkdir -p /usr/local/include/tensorflow
-  sudo cp -r tensorflow/c /usr/local/include/tensorflow/
-  # Copy TSL C headers for status API
-  sudo cp -r tensorflow/tsl /usr/local/include/
-  cd - >/dev/null
-  sudo ldconfig
-else
-  echo "Unsupported architecture: $ARCH"
+if [ "$ARCH" != "aarch64" ] && [ "$ARCH" != "arm64" ]; then
+  echo "Unsupported architecture: $ARCH (only ARM64 supported)"
   exit 1
 fi
+# Install Bazelisk if Bazel is missing
+if ! command -v bazel &>/dev/null; then
+  echo "Installing Bazelisk for ARM64..."
+  curl -fSL https://github.com/bazelbuild/bazelisk/releases/latest/download/bazelisk-linux-arm64 -o bazel
+  chmod +x bazel
+  sudo mv bazel /usr/local/bin/bazel
+fi
+# Clone TensorFlow source if needed
+TF_SRC="$HOME/tensorflow"
+if [ ! -d "$TF_SRC" ]; then
+  echo "Cloning TensorFlow source to $TF_SRC..."
+  git clone https://github.com/tensorflow/tensorflow.git "$TF_SRC"
+fi
+cd "$TF_SRC"
+git checkout v2.15.0 || true
+echo "Building TensorFlow C library (this may take several minutes)..."
+bazel build -c opt //tensorflow:libtensorflow.so
+echo "Installing built libtensorflow.so..."
+sudo cp bazel-bin/tensorflow/libtensorflow.so /usr/local/lib/
+echo "Installing TensorFlow C headers..."
+sudo mkdir -p /usr/local/include/tensorflow
+sudo cp -r tensorflow/c /usr/local/include/tensorflow/
+sudo cp -r tensorflow/tsl /usr/local/include/
+cd - >/dev/null
+sudo ldconfig
 # verify headers
 if [ ! -f /usr/local/include/tensorflow/c/c_api.h ]; then
   echo "Error: TensorFlow C headers not found under /usr/local/include/tensorflow/c"
@@ -73,11 +55,10 @@ mkdir -p native
 # Create JNI wrapper invoking the TensorFlow C API
 cat > native/tensorflow_custom.c << 'EOF'
 #include <jni.h>
-#include <stdio.h>
 #include <tensorflow/c/c_api.h>
 
-JNIEXPORT jstring JNICALL Java_com_example_TensorFlowDemo_tfHelloWorld(JNIEnv *env, jclass cls) {
-    printf("Hello from custom TensorFlow native library!\n"); fflush(stdout);
+// Returns the TensorFlow C library version
+JNIEXPORT jstring JNICALL Java_com_example_TensorFlowDemo_version(JNIEnv *env, jclass cls) {
     const char* ver = TF_Version();
     return (*env)->NewStringUTF(env, ver);
 }
@@ -115,15 +96,13 @@ public class TensorFlowDemo {
             System.exit(1);
         }
     }
-
-    public static native String tfHelloWorld();
+    // Native method to return the TensorFlow C library version
+    public static native String version();
 
     public static void main(String[] args) {
         System.out.println("TensorFlow Demo Starting...");
-        String msg = tfHelloWorld();
-        System.out.println("Native method returned: " + msg);
-
-        // (Optional) Java API version retrieval skipped; using native TF C API version above
+        String ver = version();
+        System.out.println("Native TensorFlow C library version: " + ver);
 
         System.out.println("TensorFlow Demo completed successfully!");
     }
