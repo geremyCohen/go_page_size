@@ -8,7 +8,7 @@ set -e
 #-------------------------------------------------------------------
 
 # Toggle cleanup of previous builds (set to false to speed up incremental runs)
-clean=false
+clean=true
 
 # 1. Install system packages and build tools (skip if clean=false)
 if [ "$clean" = true ]; then
