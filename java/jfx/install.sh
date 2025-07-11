@@ -8,9 +8,9 @@ sudo apt update
 sudo apt purge -y 'openjdk-21-*'
 # Remove leftover dependencies
 sudo apt autoremove -y
-# Install Java 17 and required build tools
+# Install Java 17 and required build tools (including GTK2 for JavaFX)
 sudo apt install -y openjdk-17-jdk maven git cmake build-essential python3 \
-    python3-pip python3-dev wget libgtk-3-dev libgl1-mesa-dev \
+    python3-pip python3-dev wget pkg-config libgtk2.0-dev libgtk-3-dev libgl1-mesa-dev \
     libx11-dev libxext-dev libxrender-dev libxtst-dev libxi-dev libxrandr-dev \
     libxcursor-dev libxss-dev libxinerama-dev libfreetype6-dev \
     libfontconfig1-dev libasound2-dev
