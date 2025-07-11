@@ -28,8 +28,7 @@ sudo apt install -y \
     apt-transport-https \
     gnupg
 
-echo "deb [arch=arm64] https://storage.googleapis.com/bazel-apt stable jdk1.8" \
-## 2. Ensure Bazel is available via Bazelisk (ARM64)
+# Ensure Bazel is available via Bazelisk (ARM64)
 export PATH="/usr/local/bin:$PATH"
 if ! command -v bazel &>/dev/null; then
   echo "Installing Bazelisk (Bazel launcher) for ARM64..."
@@ -37,7 +36,6 @@ if ! command -v bazel &>/dev/null; then
   chmod +x bazel
   sudo mv bazel /usr/local/bin/bazel
 fi
-
 # 3. Clean up previous artifacts if requested
 if [ "$clean" = true ]; then
   echo "Cleaning up previous TensorFlow build and JNI artifacts..."
