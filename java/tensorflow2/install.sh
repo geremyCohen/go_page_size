@@ -7,8 +7,8 @@ set -e
 # compiles a JNI wrapper that calls TF_Version() via JNI.
 #-------------------------------------------------------------------
 
-# Toggle cleanup of previous builds (set to false to skip cleanup)
-clean=true
+# Toggle cleanup of previous builds (set to false to speed up incremental runs)
+clean=false
 
 # 1. Install system packages and build tools
 sudo apt update
@@ -71,6 +71,8 @@ yes "" | ./configure
 echo "Building libtensorflow.so (this may take many minutes)..."
 bazel build -c opt \
     --config=monolithic \
+    --copt=-mcmodel=large \
+    --linkopt=-mcmodel=large \
     --linkopt=-fuse-ld=bfd \
     //tensorflow:libtensorflow.so
 
