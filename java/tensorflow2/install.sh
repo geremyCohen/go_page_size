@@ -13,14 +13,61 @@ if [ "$clean" = true ]; then
   rm -rf native src pom.xml target
 fi
 
-## 2. Verify TensorFlow C library headers and lib from package
-if [ ! -f /usr/include/tensorflow/c/c_api.h ]; then
-  echo "Error: TensorFlow C headers not found; please install libtensorflow-c-dev"
-  exit 1
+# 2. Install TensorFlow C API (prebuilt ARM64 tarball or build from source)
+TF_VER=2.15.0
+BUILD_FROM_SOURCE=false
+TARBALL_URL="https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-aarch64-${TF_VER}.tar.gz"
+echo "Attempting to download TensorFlow C library version $TF_VER..."
+if curl -fSL "$TARBALL_URL" -o /tmp/libtensorflow.tar.gz; then
+  echo "Download succeeded. Extracting..."
+  if sudo tar -C /usr/local -xzf /tmp/libtensorflow.tar.gz; then
+    sudo ldconfig
+    if [ -f /usr/local/include/tensorflow/c/c_api.h ] && ldconfig -p | grep -q libtensorflow.so; then
+      echo "Prebuilt TensorFlow C API installed."
+    else
+      echo "Extraction succeeded but headers/lib not found. Will build from source."
+      BUILD_FROM_SOURCE=true
+    fi
+  else
+    echo "Extraction failed. Will build from source."
+    BUILD_FROM_SOURCE=true
+  fi
+else
+  echo "Download failed. Will build from source."
+  BUILD_FROM_SOURCE=true
 fi
-if [ ! -f /usr/lib/libtensorflow.so ]; then
-  echo "Error: TensorFlow C library not found; please install libtensorflow-c-dev"
-  exit 1
+
+if [ "$BUILD_FROM_SOURCE" = true ]; then
+  echo "Building TensorFlow C library from source..."
+  # Install Bazelisk if Bazel is missing
+  if ! command -v bazel &>/dev/null; then
+    echo "Installing Bazelisk for ARM64..."
+    curl -fSL https://github.com/bazelbuild/bazelisk/releases/latest/download/bazelisk-linux-arm64 -o bazel
+    chmod +x bazel
+    sudo mv bazel /usr/local/bin/bazel
+  fi
+  # Clone TensorFlow source if needed
+  TF_SRC="$HOME/tensorflow"
+  if [ ! -d "$TF_SRC" ]; then
+    echo "Cloning TensorFlow source to $TF_SRC..."
+    git clone https://github.com/tensorflow/tensorflow.git "$TF_SRC"
+  fi
+  cd "$TF_SRC"
+  git checkout v${TF_VER} || true
+  echo "Building TensorFlow C library (this may take several minutes)..."
+  bazel build -c opt //tensorflow:libtensorflow.so
+  echo "Installing built libtensorflow.so..."
+  sudo cp bazel-bin/tensorflow/libtensorflow.so /usr/local/lib/
+  echo "Installing TensorFlow C headers..."
+  sudo mkdir -p /usr/local/include/tensorflow
+  sudo cp -r tensorflow/c /usr/local/include/tensorflow/
+  sudo cp -r tensorflow/tsl /usr/local/include/
+  cd - >/dev/null
+  sudo ldconfig
+  if [ ! -f /usr/local/include/tensorflow/c/c_api.h ]; then
+    echo "Error: TensorFlow C headers not found under /usr/local/include/tensorflow/c"
+    exit 1
+  fi
 fi
 
 # 3. Compile custom JNI wrapper
