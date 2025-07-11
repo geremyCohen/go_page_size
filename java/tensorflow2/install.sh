@@ -96,46 +96,9 @@ public class TensorFlowDemo {
 }
 EOF
 
-# 6. Create Maven POM
-cat > pom.xml << 'EOF'
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.example</groupId>
-    <artifactId>TensorFlowDemo2</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-    </properties>
-    <dependencies>
-        <dependency>
-            <groupId>org.tensorflow</groupId>
-            <artifactId>tensorflow-java-local</artifactId>
-            <version>2.15.0</version>
-        </dependency>
-    </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.1.1</version>
-                <configuration>
-                    <executable>java</executable>
-                    <arguments>
-                        <argument>-classpath</argument>
-                        <classpath/>
-                        <argument>com.example.TensorFlowDemo</argument>
-                    </arguments>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-</project>
-EOF
-
-# 7. Compile & run the demo via Maven
-echo "Compiling and running TensorFlow Demo with custom JNI library..."
-mvn compile exec:java
+# 6. Compile Java sources and run the demo
+echo "Compiling Java sources..."
+mkdir -p target/classes
+javac -d target/classes src/main/java/com/example/TensorFlowDemo.java
+echo "Running TensorFlow Demo with custom JNI library..."
+java -cp target/classes com.example.TensorFlowDemo
