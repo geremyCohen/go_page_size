@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Toggle full clean/install mode. Set RUN_CLEAN=false to skip apt, cleanup, and clone.
-RUN_CLEAN=${RUN_CLEAN:-true}
+RUN_CLEAN=false
 if [[ "$RUN_CLEAN" != "true" && "$RUN_CLEAN" != "false" ]]; then
   echo "Invalid RUN_CLEAN value: $RUN_CLEAN. Use 'true' or 'false'." >&2
   exit 1
