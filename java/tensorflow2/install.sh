@@ -56,11 +56,12 @@ bazel build -c opt \
 echo "Installing TensorFlow C API to /usr/local..."
 sudo cp bazel-bin/tensorflow/libtensorflow.so /usr/local/lib/
 sudo mkdir -p /usr/local/include/tensorflow
-sudo cp -r tensorflow/c /usr/local/include/tensorflow/
-# Copy only the TSL C headers needed for tf_status.h
+# Copy C API headers from the nested tensorflow folder
+sudo cp -r tensorflow/tensorflow/c /usr/local/include/tensorflow/
+# Copy TSL C headers for tf_status.h
 if [ -d tensorflow/tsl/c ]; then
-  sudo mkdir -p /usr/local/include/tsl/c
-  sudo cp tensorflow/tsl/c/*.h /usr/local/include/tsl/c/
+  sudo mkdir -p /usr/local/include/tsl
+  sudo cp -r tensorflow/tsl/c /usr/local/include/tsl/
 fi
 cd ..
 sudo ldconfig
