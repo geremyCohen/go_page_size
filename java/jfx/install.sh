@@ -2,14 +2,18 @@
 
 echo "=== Installing system packages ==="
 ## 1. Install system packages (use Java 17 only)
-# 1. Install system packages (purge Java 21, install Java 17 only)
+# 1a. Update package list
 sudo apt update
+# 1b. Purge any Java 21 remnants
 sudo apt purge -y 'openjdk-21-*'
-sudo apt autoremove -y
-sudo apt install -y openjdk-17-jdk maven git cmake build-essential python3 \
-    python3-pip python3-dev wget libgtk-3-dev libgl1-mesa-dev libx11-dev libxext-dev \
-    libxrender-dev libxtst-dev libxi-dev libxrandr-dev libxcursor-dev libxss-dev libxinerama-dev \
-    libfreetype6-dev libfontconfig1-dev libasound2-dev
+sudo apt purge -y 'openjdk-21-*'
+ # 1c. Remove leftover dependencies
+ sudo apt autoremove -y
+ # 1d. Install Java 17 and required build tools
+ sudo apt install -y openjdk-17-jdk maven git cmake build-essential python3 \
+     python3-pip python3-dev wget libgtk-3-dev libgl1-mesa-dev libx11-dev libxext-dev \
+     libxrender-dev libxtst-dev libxi-dev libxrandr-dev libxcursor-dev libxss-dev libxinerama-dev \
+     libfreetype6-dev libfontconfig1-dev libasound2-dev
 
 # Ensure Java 17 is the default java/javac
 sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java || true
