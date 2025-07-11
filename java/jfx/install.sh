@@ -1,6 +1,27 @@
 #!/bin/bash
 
-echo "=== Installing system packages ==="
+# Toggle full clean/install mode. Set RUN_CLEAN=false to skip apt, cleanup, and clone.
+RUN_CLEAN=${RUN_CLEAN:-true}
+if [[ "$RUN_CLEAN" != "true" && "$RUN_CLEAN" != "false" ]]; then
+  echo "Invalid RUN_CLEAN value: $RUN_CLEAN. Use 'true' or 'false'." >&2
+  exit 1
+fi
+echo "RUN_CLEAN mode: $RUN_CLEAN"
+if [ "$RUN_CLEAN" = "true" ]; then
+
+#!/bin/bash
+
+# Toggle full clean/install mode. Set RUN_CLEAN=false to skip apt, cleanup, and clone.
+RUN_CLEAN=${RUN_CLEAN:-true}
+if [[ "$RUN_CLEAN" != "true" && "$RUN_CLEAN" != "false" ]]; then
+  echo "Invalid RUN_CLEAN value: $RUN_CLEAN. Use 'true' or 'false'." >&2
+  exit 1
+fi
+echo "RUN_CLEAN mode: $RUN_CLEAN"
+
+# Only perform cleanup, install, clone, and patch when RUN_CLEAN is true
+if [ "$RUN_CLEAN" = "true" ]; then
+  echo "=== Installing system packages ==="
 ## 1. Install system packages (use Java 17 only)
 # 1a. Update package list
 sudo apt update
@@ -12,16 +33,35 @@ sudo apt autoremove -y
 sudo apt install -y openjdk-17-jdk maven git cmake build-essential python3 \
     python3-pip python3-dev wget pkg-config libgtk2.0-dev libgtk-3-dev libgl1-mesa-dev \
     libx11-dev libxext-dev libxrender-dev libxtst-dev libxi-dev libxrandr-dev \
-    libxcursor-dev libxss-dev libxinerama-dev libfreetype6-dev \
+    libxcursor-dev libxss-dev libxinerama-dev libxxf86vm-dev:arm64 libfreetype6-dev \
     libfontconfig1-dev libasound2-dev
 
-# Ensure Java 17 is the system default for java/javac
-if [ -d /usr/lib/jvm/java-17-openjdk-amd64 ]; then
+  # Install Java 17 and cleanup
+  # Purge any Java 21 remnants
+  sudo apt purge -y 'openjdk-21-*'
+  sudo apt autoremove -y
+  # Set Java alternatives
+  if [ -d /usr/lib/jvm/java-17-openjdk-amd64 ]; then
   sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
   sudo update-alternatives --set javac /usr/lib/jvm/java-17-openjdk-amd64/bin/javac
-elif [ -d /usr/lib/jvm/java-17-openjdk-arm64 ]; then
-  sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-arm64/bin/java
-  sudo update-alternatives --set javac /usr/lib/jvm/java-17-openjdk-arm64/bin/javac
+  elif [ -d /usr/lib/jvm/java-17-openjdk-arm64 ]; then
+    sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-arm64/bin/java
+    sudo update-alternatives --set javac /usr/lib/jvm/java-17-openjdk-arm64/bin/javac
+  fi
+  echo "=== Cleaning up existing files ==="
+  # Clean and clone
+  sudo rm -rf ~/jfx ~/jfx-build /usr/local/lib/javafx
+  sudo rm -f /usr/local/lib/*jfx* /usr/local/lib/*javafx*
+  sudo ldconfig
+  rm -rf ~/jfx
+  git clone https://github.com/openjdk/jfx.git ~/jfx
+  cd ~/jfx && git checkout jfx17
+  # Patch Gradle wrapper
+  WRAPPER_PROP=gradle/wrapper/gradle-wrapper.properties
+  if [ -f "$WRAPPER_PROP" ]; then
+    sed -i 's|distributionUrl=.*|distributionUrl=https://services.gradle.org/distributions/gradle-7.6-bin.zip|' "$WRAPPER_PROP"
+    sed -i '/^distributionSha256Sum/d' "$WRAPPER_PROP"
+  fi
 fi
 
 echo "=== Cleaning up existing files ==="
@@ -88,6 +128,8 @@ else
     echo "JavaFX native source not found, will add message to JNI wrapper"
 fi
 
+fi
+fi
 echo "=== Building JavaFX from source ==="
 # 5. Build JavaFX from source
 cd ~/jfx
