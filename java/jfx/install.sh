@@ -33,7 +33,7 @@ sudo apt autoremove -y
 sudo apt install -y openjdk-17-jdk maven git cmake build-essential python3 \
     python3-pip python3-dev wget pkg-config libgtk2.0-dev libgtk-3-dev libgl1-mesa-dev \
     libx11-dev libxext-dev libxrender-dev libxtst-dev libxi-dev libxrandr-dev \
-    libxcursor-dev libxss-dev libxinerama-dev libxxf86vm-dev:arm64 libfreetype6-dev \
+    libxcursor-dev libxss-dev libxinerama-dev libxxf86vm-dev libfreetype6-dev \
     libfontconfig1-dev libasound2-dev
 
   # Install Java 17 and cleanup
