@@ -82,7 +82,7 @@ else
     if [ -n "$PROJECT_DIR" ]; then
         echo "$PROJECT_DIR" > "$CACHE_FILE"
     fi
-fi
+
 if [ -n "$PROJECT_DIR" ]; then
     rm -rf "$PROJECT_DIR/target"
     rm -rf "$PROJECT_DIR/native"
