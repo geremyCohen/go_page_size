@@ -8,7 +8,7 @@ clean=true
 sudo apt update
 sudo apt install -y \
     openjdk-17-jdk maven git cmake build-essential python3-dev python3-pip \
-    wget curl zip zlib1g-dev clang bazel
+    wget curl zip zlib1g-dev clang
 
 # 2. Clean up previous artifacts if requested
 if [ "$clean" = true ]; then
