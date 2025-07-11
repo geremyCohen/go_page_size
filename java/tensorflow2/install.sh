@@ -4,7 +4,7 @@
 clean=true
 
 # 1. Install system packages
-sudo apt update && sudo apt install -y openjdk-17-jdk maven git cmake build-essential wget tar
+sudo apt update && sudo apt install -y openjdk-17-jdk maven git cmake build-essential wget curl tar
 
 # 2. Clean up existing files if requested
 if [ "$clean" = true ]; then
@@ -47,15 +47,15 @@ elif [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; then
   cd "$TF_SRC"
   git checkout v2.15.0 || true
   echo "Building TensorFlow C library (this may take several minutes)..."
-  bazel build --config=opt //tensorflow:libtensorflow.so
-  echo "Installing built libtensorflow.so and headers..."
+  bazel build -c opt //tensorflow:libtensorflow.so
+  echo "Installing built libtensorflow.so..."
   sudo cp bazel-bin/tensorflow/libtensorflow.so /usr/local/lib/
+  echo "Installing TensorFlow C headers..."
+  # Copy C API headers
   sudo mkdir -p /usr/local/include/tensorflow
   sudo cp -r tensorflow/c /usr/local/include/tensorflow/
-  # Include TSL C headers
-  if [ -d tensorflow/tsl ]; then
-    sudo cp -r tensorflow/tsl /usr/local/include/tensorflow/
-  fi
+  # Copy TSL C headers for status API
+  sudo cp -r tensorflow/tsl /usr/local/include/
   cd - >/dev/null
   sudo ldconfig
 else
