@@ -10,6 +10,15 @@ sudo apt install -y \
     openjdk-17-jdk maven git cmake build-essential python3-dev python3-pip \
     wget curl zip zlib1g-dev clang
 
+# Ensure Bazel is available via Bazelisk for ARM64
+export PATH="/usr/local/bin:$PATH"
+if ! command -v bazel &>/dev/null; then
+  echo "Installing Bazelisk for ARM64..."
+  curl -fsSL https://github.com/bazelbuild/bazelisk/releases/latest/download/bazelisk-linux-arm64 -o bazel
+  chmod +x bazel
+  sudo mv bazel /usr/local/bin/bazel
+fi
+
 # 2. Clean up previous artifacts if requested
 if [ "$clean" = true ]; then
   echo "Cleaning up previous TensorFlow custom JNI build..."
@@ -19,6 +28,8 @@ fi
 # 3. Clone TensorFlow source (v2.15.0)
 git clone --depth 1 --branch v2.15.0 https://github.com/tensorflow/tensorflow.git tensorflow
 cd tensorflow
+# Pin Bazel version to 6.1.0 via bazelisk config to avoid Bazel 8+ WORKSPACE issues
+echo "6.1.0" > .bazelversion
 
 # 4. Configure build environment non-interactively
 # 5. Configure TensorFlow build non-interactively
