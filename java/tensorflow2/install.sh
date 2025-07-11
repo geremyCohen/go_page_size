@@ -10,33 +10,36 @@ set -e
 # Toggle cleanup of previous builds (set to false to speed up incremental runs)
 clean=false
 
-# 1. Install system packages and build tools
-sudo apt update
-sudo apt install -y \
-    openjdk-17-jdk \
-    maven \
-    git \
-    cmake \
-    build-essential \
-    python3-dev \
-    python3-pip \
-    wget \
-    curl \
-    zip \
-    zlib1g-dev \
-    clang \
-    apt-transport-https \
-    gnupg
+# 1. Install system packages and build tools (skip if clean=false)
+if [ "$clean" = true ]; then
+  sudo apt update
+  sudo apt install -y \
+      openjdk-17-jdk \
+      maven \
+      git \
+      cmake \
+      build-essential \
+      python3-dev \
+      python3-pip \
+      wget \
+      curl \
+      zip \
+      zlib1g-dev \
+      clang \
+      apt-transport-https \
+      gnupg
 
-# Ensure Bazel is available via Bazelisk (ARM64)
-export PATH="/usr/local/bin:$PATH"
-if ! command -v bazel &>/dev/null; then
-  echo "Installing Bazelisk (Bazel launcher) for ARM64..."
-  curl -fsSL https://github.com/bazelbuild/bazelisk/releases/latest/download/bazelisk-linux-arm64 -o bazel
-  chmod +x bazel
-  sudo mv bazel /usr/local/bin/bazel
+  # Ensure Bazel is available via Bazelisk (ARM64)
+  export PATH="/usr/local/bin:$PATH"
+  if ! command -v bazel &>/dev/null; then
+    echo "Installing Bazelisk (Bazel launcher) for ARM64..."
+    curl -fsSL https://github.com/bazelbuild/bazelisk/releases/latest/download/bazelisk-linux-arm64 -o bazel
+    chmod +x bazel
+    sudo mv bazel /usr/local/bin/bazel
+  fi
 fi
-# 3. Clean up previous artifacts if requested
+    
+# 2. Clean up previous artifacts if requested
 if [ "$clean" = true ]; then
   echo "Cleaning up previous TensorFlow build and JNI artifacts..."
   rm -rf native src target tensorflow
@@ -45,9 +48,16 @@ if [ "$clean" = true ]; then
   sudo rm -rf /usr/local/include/tensorflow /usr/local/include/tsl
 fi
 
-# 4. Clone TensorFlow source (v2.15.0)
 echo "Cloning TensorFlow v2.15.0 source..."
 git clone --branch v2.15.0 https://github.com/tensorflow/tensorflow.git tensorflow
+## 4. Clone TensorFlow source (v2.15.0) (skip if clean=false)
+if [ "$clean" = true ]; then
+  echo "Cloning TensorFlow v2.15.0 source..."
+  git clone --branch v2.15.0 https://github.com/tensorflow/tensorflow.git tensorflow
+else
+  echo "Skipping clone (clean=false), assuming ./tensorflow exists"
+fi
+cd tensorflow
 cd tensorflow
 
 # 5. Patch denormal.cc to include <cstdint> for ARM64
