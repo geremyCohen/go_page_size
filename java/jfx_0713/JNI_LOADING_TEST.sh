@@ -40,28 +40,35 @@ JAVAFX_CLASSPATH="$JAVAFX_MODULES/javafx.base:$JAVAFX_MODULES/javafx.graphics:$J
 export LD_LIBRARY_PATH="$JAVAFX_LIBS/javafx.graphics:$JAVAFX_LIBS/javafx.media:$JAVAFX_LIBS/javafx.base:$LD_LIBRARY_PATH"
 
 echo "✅ JNI Loading Configuration:"
-echo "   LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
-echo "   java.library.path will be set to: $JAVAFX_LIBS/javafx.graphics:$JAVAFX_LIBS/javafx.media:$JAVAFX_LIBS/javafx.base"
+echo "   LD_LIBRARY_PATH includes JavaFX paths: YES"
+echo "   java.library.path will be set to JavaFX libraries: YES"
 echo
 
-# Compile simple test
-echo "=== Compiling JNI Loading Test ==="
-javac -cp "$JAVAFX_CLASSPATH" SimpleTest.java
+# Compile JNI loading demo
+echo "=== Compiling JNI Loading Demo ==="
+javac -cp "$JAVAFX_CLASSPATH" JNILoadingDemo.java
 
-echo "=== Running JNI Loading Test with Verbose Output ==="
-echo "Watch for 'Loading ... native library' messages:"
+if [ $? -eq 0 ]; then
+    echo "✅ JNILoadingDemo compilation successful"
+else
+    echo "❌ JNILoadingDemo compilation failed"
+    exit 1
+fi
+
 echo
 
-# Run with maximum JNI and library loading verbosity
+echo "=== Running JNI Loading Demo ==="
+echo "This will show JavaFX class loading and JNI readiness:"
+echo
+
+# Run the JNI loading demo
 java -cp ".:$JAVAFX_CLASSPATH" \
      -Djava.library.path="$JAVAFX_LIBS/javafx.graphics:$JAVAFX_LIBS/javafx.media:$JAVAFX_LIBS/javafx.base" \
-     -Dprism.verbose=true \
-     -Dprism.debug=true \
-     -Djavafx.verbose=true \
-     -Djava.awt.debug=true \
-     -verbose:jni \
-     SimpleTest
+     JNILoadingDemo
 
 echo
 echo "=== JNI Loading Test Complete ==="
-echo "Look for 'Loading ... native library ... succeeded' messages above"
+echo
+echo "🔍 To see actual JNI library loading in action:"
+echo "   xvfb-run -a ./MINIMALTEST_RUN.sh"
+echo "   (This will show 'Loading ... native library ... succeeded' messages)"
