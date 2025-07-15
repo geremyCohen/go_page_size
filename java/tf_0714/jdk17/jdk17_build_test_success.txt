@@ -1,0 +1,1 @@
+JDK17 minimal build test passed on Tue Jul 15 02:51:18 UTC 2025
