@@ -51,7 +51,7 @@ CACHE_FILE="$HOME/.sql_project_path_cache"
 if [ -f "$CACHE_FILE" ] && [ -d "$(cat "$CACHE_FILE")" ]; then
     PROJECT_DIR=$(cat "$CACHE_FILE")
 else
-    PROJECT_DIR=$(find ~ -name "sql" -path "*/examples/java/sql" 2>/dev/null | head -1)
+    PROJECT_DIR=$(find ~ -name "sql" -path "*/java/sql" 2>/dev/null | head -1)
     if [ -n "$PROJECT_DIR" ]; then
         echo "$PROJECT_DIR" > "$CACHE_FILE"
     fi
