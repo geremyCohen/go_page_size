@@ -64,9 +64,16 @@ run_demo() {
     fi
     
     echo
-    echo "Press Enter to continue to next demo..."
-    read
-    echo
+    
+    # Only wait for input if running interactively (stdin is a terminal)
+    if [ -t 0 ]; then
+        echo "Press Enter to continue to next demo..."
+        read -r
+        echo
+    else
+        echo "Continuing to next demo..."
+        echo
+    fi
 }
 
 # Menu function
@@ -84,7 +91,7 @@ show_menu() {
 # Main menu loop
 while true; do
     show_menu
-    read choice
+    read -r choice
     echo
     
     case $choice in
