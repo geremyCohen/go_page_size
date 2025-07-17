@@ -1,0 +1,1025 @@
+=== Minimal Native Libraries Build for JNI Testing ===
+Building only essential .so libraries for JavaFXJNITest
+
+Build directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx
+Java version: openjdk version "17.0.15" 2025-04-15
+
+✅ Created minimal gradle configuration
+
+=== Building Essential Native Libraries ===
+Building font library...
+Initialized native services in: /home/ubuntu/.gradle/native
+Initialized jansi services in: /home/ubuntu/.gradle/native
+Received JVM installation metadata from '/usr/lib/jvm/java-17-openjdk-arm64': {JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64, JAVA_VERSION=17.0.15, JAVA_VENDOR=Ubuntu, RUNTIME_NAME=OpenJDK Runtime Environment, RUNTIME_VERSION=17.0.15+6-Ubuntu-0ubuntu124.04, VM_NAME=OpenJDK 64-Bit Server VM, VM_VERSION=17.0.15+6-Ubuntu-0ubuntu124.04, VM_VENDOR=Ubuntu, OS_ARCH=aarch64}
+Checking if the launcher JVM can be re-used for build. To be re-used, the launcher JVM needs to match the parameters required for the build process: --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-opens=java.base/java.nio.charset=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED -Xmx2g -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant
+To honour the JVM settings for this build a single-use Daemon process will be forked. See https://docs.gradle.org/7.6/userguide/gradle_daemon.html#sec:disabling_the_daemon.
+Starting process 'Gradle build daemon'. Working directory: /home/ubuntu/.gradle/daemon/7.6 Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-opens=java.base/java.nio.charset=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED -Xmx2g -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/.gradle/wrapper/dists/gradle-7.6-bin/9l9tetv7ltxvx3i8an4pb86ye/gradle-7.6/lib/gradle-launcher-7.6.jar org.gradle.launcher.daemon.bootstrap.GradleDaemon 7.6
+Successfully started process 'Gradle build daemon'
+An attempt to start the daemon took 0.512 secs.
+The client will now receive all logging from the daemon (pid: 59973). The daemon log file: /home/ubuntu/.gradle/daemon/7.6/daemon-59973.out.log
+Closing daemon's stdin at end of input.
+The daemon will no longer process any standard input.
+Daemon will be stopped at the end of the build 
+Using 192 worker leases.
+Received JVM installation metadata from '/usr/lib/jvm/java-17-openjdk-arm64': {JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64, JAVA_VERSION=17.0.15, JAVA_VENDOR=Ubuntu, RUNTIME_NAME=OpenJDK Runtime Environment, RUNTIME_VERSION=17.0.15+6-Ubuntu-0ubuntu124.04, VM_NAME=OpenJDK 64-Bit Server VM, VM_VERSION=17.0.15+6-Ubuntu-0ubuntu124.04, VM_VENDOR=Ubuntu, OS_ARCH=aarch64}
+Watching the file system is configured to be enabled if available
+Now considering [/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx] as hierarchies to watch
+Now considering [/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/buildSrc, /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx] as hierarchies to watch
+File system watching is active
+Starting Build
+Settings evaluated using settings file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/settings.gradle'.
+Projects loaded. Root project using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/build.gradle'.
+Included projects: [root project 'jfx', project ':apps', project ':base', project ':controls', project ':fxml', project ':graphics', project ':media', project ':swing', project ':swt', project ':systemTests', project ':web']
+
+> Configure project :buildSrc
+Evaluating project ':buildSrc' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/buildSrc/build.gradle'.
+Task name matched 'build'
+Selected primary task 'build' from project :
+Resolve mutations for :buildSrc:compileJava (Thread[Execution worker,5,main]) started.
+:buildSrc:compileJava (Thread[Execution worker Thread 99,5,main]) started.
+
+> Task :buildSrc:compileJava NO-SOURCE
+Watching 1 directories to track changes
+Skipping task ':buildSrc:compileJava' as it has no source files and no previous output files.
+Resolve mutations for :buildSrc:compileGroovy (Thread[Execution worker Thread 99,5,main]) started.
+:buildSrc:compileGroovy (Thread[Execution worker Thread 99,5,main]) started.
+
+> Task :buildSrc:compileGroovy UP-TO-DATE
+Watching 6 directories to track changes
+Watching 7 directories to track changes
+Watching 8 directories to track changes
+Watching 9 directories to track changes
+Watching 10 directories to track changes
+Watching 11 directories to track changes
+Watching 12 directories to track changes
+Watching 13 directories to track changes
+Caching disabled for task ':buildSrc:compileGroovy' because:
+  Build cache is disabled
+Skipping task ':buildSrc:compileGroovy' as it is up-to-date.
+Resolve mutations for :buildSrc:processResources (Thread[Execution worker Thread 99,5,main]) started.
+:buildSrc:processResources (Thread[Execution worker Thread 99,5,main]) started.
+
+> Task :buildSrc:processResources NO-SOURCE
+Watching 13 directories to track changes
+Skipping task ':buildSrc:processResources' as it has no source files and no previous output files.
+Resolve mutations for :buildSrc:classes (Thread[Execution worker Thread 99,5,main]) started.
+:buildSrc:classes (Thread[Execution worker Thread 99,5,main]) started.
+
+> Task :buildSrc:classes UP-TO-DATE
+Skipping task ':buildSrc:classes' as it has no actions.
+Resolve mutations for :buildSrc:jar (Thread[Execution worker Thread 163,5,main]) started.
+:buildSrc:jar (Thread[Execution worker Thread 102,5,main]) started.
+
+> Task :buildSrc:jar UP-TO-DATE
+Watching 14 directories to track changes
+Watching 15 directories to track changes
+Watching 16 directories to track changes
+Caching disabled for task ':buildSrc:jar' because:
+  Build cache is disabled
+Skipping task ':buildSrc:jar' as it is up-to-date.
+Resolve mutations for :buildSrc:assemble (Thread[Execution worker Thread 102,5,main]) started.
+:buildSrc:assemble (Thread[Execution worker Thread 102,5,main]) started.
+
+> Task :buildSrc:assemble UP-TO-DATE
+Skipping task ':buildSrc:assemble' as it has no actions.
+Resolve mutations for :buildSrc:compileTestJava (Thread[Execution worker Thread 102,5,main]) started.
+:buildSrc:compileTestJava (Thread[Execution worker Thread 102,5,main]) started.
+
+> Task :buildSrc:compileTestJava NO-SOURCE
+Watching 17 directories to track changes
+Skipping task ':buildSrc:compileTestJava' as it has no source files and no previous output files.
+Resolve mutations for :buildSrc:compileTestGroovy (Thread[Execution worker Thread 102,5,main]) started.
+:buildSrc:compileTestGroovy (Thread[Execution worker Thread 25,5,main]) started.
+
+> Task :buildSrc:compileTestGroovy NO-SOURCE
+Watching 17 directories to track changes
+Skipping task ':buildSrc:compileTestGroovy' as it has no source files and no previous output files.
+Resolve mutations for :buildSrc:processTestResources (Thread[Execution worker Thread 25,5,main]) started.
+:buildSrc:processTestResources (Thread[Execution worker Thread 2,5,main]) started.
+
+> Task :buildSrc:processTestResources NO-SOURCE
+Watching 17 directories to track changes
+Skipping task ':buildSrc:processTestResources' as it has no source files and no previous output files.
+Resolve mutations for :buildSrc:testClasses (Thread[Execution worker Thread 2,5,main]) started.
+:buildSrc:testClasses (Thread[Execution worker Thread 2,5,main]) started.
+
+> Task :buildSrc:testClasses UP-TO-DATE
+Skipping task ':buildSrc:testClasses' as it has no actions.
+Resolve mutations for :buildSrc:test (Thread[Execution worker Thread 2,5,main]) started.
+producer locations for task group 0 (Thread[Execution worker Thread 172,5,main]) started.
+:buildSrc:test (Thread[Execution worker Thread 173,5,main]) started.
+
+> Task :buildSrc:test NO-SOURCE
+Watching 17 directories to track changes
+Watching 18 directories to track changes
+Skipping task ':buildSrc:test' as it has no source files and no previous output files.
+Resolve mutations for :buildSrc:check (Thread[Execution worker Thread 173,5,main]) started.
+:buildSrc:check (Thread[Execution worker Thread 173,5,main]) started.
+
+> Task :buildSrc:check UP-TO-DATE
+Skipping task ':buildSrc:check' as it has no actions.
+Resolve mutations for :buildSrc:build (Thread[Execution worker Thread 173,5,main]) started.
+:buildSrc:build (Thread[Execution worker Thread 173,5,main]) started.
+
+> Task :buildSrc:build UP-TO-DATE
+Skipping task ':buildSrc:build' as it has no actions.
+
+> Configure project :systemTests
+Evaluating project ':systemTests' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/tests/system/build.gradle'.
+
+> Configure project :apps
+Evaluating project ':apps' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/apps/build.gradle'.
+
+> Configure project :base
+Evaluating project ':base' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build.gradle'.
+
+> Configure project :controls
+Evaluating project ':controls' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.controls/build.gradle'.
+
+> Configure project :fxml
+Evaluating project ':fxml' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.fxml/build.gradle'.
+
+> Configure project :graphics
+Evaluating project ':graphics' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build.gradle'.
+
+> Configure project :media
+Evaluating project ':media' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.media/build.gradle'.
+
+> Configure project :swing
+Evaluating project ':swing' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.swing/build.gradle'.
+
+> Configure project :swt
+Evaluating project ':swt' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.swt/build.gradle'.
+
+> Configure project :web
+Evaluating project ':web' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.web/build.gradle'.
+
+> Configure project :
+Evaluating root project 'jfx' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/build.gradle'.
+Applying COMPILE_FLAGS_FILE 'buildSrc/linux.gradle'
+gradle.gradleVersion: 7.6
+OS_NAME: linux
+OS_ARCH: aarch64
+JAVA_HOME: /usr/lib/jvm/java-17-openjdk-arm64
+JDK_HOME: /usr/lib/jvm/java-17-openjdk-arm64
+java.runtime.version: 17.0.15+6-Ubuntu-0ubuntu124.04
+java version: 17.0.15
+java build number: 6
+jdk.runtime.version: 17.0.15+6-Ubuntu-0ubuntu124.04
+jdk version: 17.0.15
+jdk build number: 6
+minimum jdk version: 17
+minimum jdk build number: 35
+Java target version: 17
+GCC version: gcc12.2.0-OL6.4+1.0
+cmake version: 3.22.3
+ninja version: 1.8.2
+ant version: 1.10.5
+HAS_JAVAFX_MODULES: false
+STUB_RUNTIME: /usr/lib/jvm/java-17-openjdk-arm64
+CONF: Release
+NUM_COMPILE_THREADS: 192
+COMPILE_TARGETS: linux
+COMPILE_FLAGS_FILES: buildSrc/linux.gradle
+HUDSON_JOB_NAME: not_hudson
+HUDSON_BUILD_NUMBER: 0000
+PROMOTED_BUILD_NUMBER: 0
+PRODUCT_NAME: OpenJFX
+BUILD_TIMESTAMP: 2025-07-16T14:55:09Z
+RELEASE_VERSION: 21
+RELEASE_SUFFIX: -internal
+RELEASE_VERSION_SHORT: 21-internal
+RELEASE_VERSION_LONG: 21-internal+0-2025-07-16-145509
+RELEASE_VERSION_PADDED: 21.0.0.0
+MAVEN_PUBLISH: false
+MAVEN_VERSION: 
+UPDATE_STUB_CACHE: false
+JIGSAW Testing disabled for swt
+Building Webkit configuration /Release/ into /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.web/build/linux
+Using 'javac -source/-target' for task ':swing:compileJava'
+Using 'javac -source/-target' for task ':swing:compileShimsJava'
+Using 'javac -source/-target' for task ':swing:compileTestJava'
+Using 'javac -source/-target' for task ':systemTests:compileJava'
+Using 'javac -source/-target' for task ':systemTests:compileTestJava'
+Using 'javac -source/-target' for task ':systemTests:compileTestapp1Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestapp2Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestapp3Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestapp4Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestapp5Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestapp6Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestapp7Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestscriptapp1Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestscriptapp2Java'
+module: project ':apps' (buildModule=NO)
+module: project ':base' (buildModule=YES)
+module: project ':controls' (buildModule=YES)
+module: project ':fxml' (buildModule=YES)
+module: project ':graphics' (buildModule=YES)
+module: project ':media' (buildModule=YES)
+module: project ':swing' (buildModule=YES)
+module: project ':swt' (buildModule=NO)
+module: project ':systemTests' (buildModule=NO)
+module: project ':web' (buildModule=YES)
+file or directory '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/dependencies', not found
+All projects evaluated.
+Task path ':graphics:nativeFont' matched project ':graphics'
+Task name matched 'nativeFont'
+Selected primary task 'nativeFont' from project :graphics
+Tasks to be executed: [task ':graphics:ccLinuxFont', task ':graphics:linkLinuxFont', task ':graphics:nativeFont']
+Tasks that were excluded: []
+Resolve mutations for :graphics:ccLinuxFont (Thread[Execution worker Thread 30,5,main]) started.
+:graphics:ccLinuxFont (Thread[Execution worker Thread 30,5,main]) started.
+
+> Task :graphics:ccLinuxFont FAILED
+Watching 19 directories to track changes
+Watching 20 directories to track changes
+Watching 20 directories to track changes
+Watching 20 directories to track changes
+Watching 20 directories to track changes
+Watching 20 directories to track changes
+Watching 20 directories to track changes
+Watching 20 directories to track changes
+Watching 20 directories to track changes
+Watching 21 directories to track changes
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem was found with the configuration of task ':graphics:ccLinuxFont' (type 'CCTask').
+  - Type 'CCTask' property 'headers' specifies directory '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/headers/javafx.graphics' which doesn't exist.
+    
+    Reason: An input file was expected to be present but it doesn't exist.
+    
+    Possible solutions:
+      1. Make sure the directory exists before the task is called.
+      2. Make sure that the task which produces the directory is declared as an input.
+    
+    Please refer to https://docs.gradle.org/7.6/userguide/validation_problems.html#input_file_does_not_exist for more details about this problem.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --debug option to get more log output.
+> Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.6/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD FAILED in 4s
+3 actionable tasks: 1 executed, 2 up-to-date
+Font library build timed out
+Building glass library...
+Initialized native services in: /home/ubuntu/.gradle/native
+Initialized jansi services in: /home/ubuntu/.gradle/native
+Received JVM installation metadata from '/usr/lib/jvm/java-17-openjdk-arm64': {JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64, JAVA_VERSION=17.0.15, JAVA_VENDOR=Ubuntu, RUNTIME_NAME=OpenJDK Runtime Environment, RUNTIME_VERSION=17.0.15+6-Ubuntu-0ubuntu124.04, VM_NAME=OpenJDK 64-Bit Server VM, VM_VERSION=17.0.15+6-Ubuntu-0ubuntu124.04, VM_VENDOR=Ubuntu, OS_ARCH=aarch64}
+Checking if the launcher JVM can be re-used for build. To be re-used, the launcher JVM needs to match the parameters required for the build process: --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-opens=java.base/java.nio.charset=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED -Xmx2g -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant
+To honour the JVM settings for this build a single-use Daemon process will be forked. See https://docs.gradle.org/7.6/userguide/gradle_daemon.html#sec:disabling_the_daemon.
+Starting process 'Gradle build daemon'. Working directory: /home/ubuntu/.gradle/daemon/7.6 Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-opens=java.base/java.nio.charset=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED -Xmx2g -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/.gradle/wrapper/dists/gradle-7.6-bin/9l9tetv7ltxvx3i8an4pb86ye/gradle-7.6/lib/gradle-launcher-7.6.jar org.gradle.launcher.daemon.bootstrap.GradleDaemon 7.6
+Successfully started process 'Gradle build daemon'
+An attempt to start the daemon took 0.523 secs.
+The client will now receive all logging from the daemon (pid: 60474). The daemon log file: /home/ubuntu/.gradle/daemon/7.6/daemon-60474.out.log
+Closing daemon's stdin at end of input.
+The daemon will no longer process any standard input.
+Daemon will be stopped at the end of the build 
+Using 192 worker leases.
+Received JVM installation metadata from '/usr/lib/jvm/java-17-openjdk-arm64': {JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64, JAVA_VERSION=17.0.15, JAVA_VENDOR=Ubuntu, RUNTIME_NAME=OpenJDK Runtime Environment, RUNTIME_VERSION=17.0.15+6-Ubuntu-0ubuntu124.04, VM_NAME=OpenJDK 64-Bit Server VM, VM_VERSION=17.0.15+6-Ubuntu-0ubuntu124.04, VM_VENDOR=Ubuntu, OS_ARCH=aarch64}
+Watching the file system is configured to be enabled if available
+Now considering [/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx] as hierarchies to watch
+Now considering [/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/buildSrc, /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx] as hierarchies to watch
+File system watching is active
+Starting Build
+Settings evaluated using settings file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/settings.gradle'.
+Projects loaded. Root project using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/build.gradle'.
+Included projects: [root project 'jfx', project ':apps', project ':base', project ':controls', project ':fxml', project ':graphics', project ':media', project ':swing', project ':swt', project ':systemTests', project ':web']
+
+> Configure project :buildSrc
+Evaluating project ':buildSrc' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/buildSrc/build.gradle'.
+Task name matched 'build'
+Selected primary task 'build' from project :
+Resolve mutations for :buildSrc:compileJava (Thread[Execution worker,5,main]) started.
+:buildSrc:compileJava (Thread[Execution worker Thread 14,5,main]) started.
+
+> Task :buildSrc:compileJava NO-SOURCE
+Watching 1 directories to track changes
+Skipping task ':buildSrc:compileJava' as it has no source files and no previous output files.
+Resolve mutations for :buildSrc:compileGroovy (Thread[Execution worker Thread 14,5,main]) started.
+:buildSrc:compileGroovy (Thread[Execution worker Thread 112,5,main]) started.
+
+> Task :buildSrc:compileGroovy UP-TO-DATE
+Watching 6 directories to track changes
+Watching 7 directories to track changes
+Watching 8 directories to track changes
+Watching 9 directories to track changes
+Watching 10 directories to track changes
+Watching 11 directories to track changes
+Watching 12 directories to track changes
+Watching 13 directories to track changes
+Caching disabled for task ':buildSrc:compileGroovy' because:
+  Build cache is disabled
+Skipping task ':buildSrc:compileGroovy' as it is up-to-date.
+Resolve mutations for :buildSrc:processResources (Thread[Execution worker Thread 112,5,main]) started.
+:buildSrc:processResources (Thread[Execution worker Thread 112,5,main]) started.
+
+> Task :buildSrc:processResources NO-SOURCE
+Watching 13 directories to track changes
+Skipping task ':buildSrc:processResources' as it has no source files and no previous output files.
+Resolve mutations for :buildSrc:classes (Thread[Execution worker Thread 112,5,main]) started.
+:buildSrc:classes (Thread[Execution worker Thread 112,5,main]) started.
+
+> Task :buildSrc:classes UP-TO-DATE
+Skipping task ':buildSrc:classes' as it has no actions.
+Resolve mutations for :buildSrc:jar (Thread[Execution worker Thread 112,5,main]) started.
+:buildSrc:jar (Thread[Execution worker Thread 153,5,main]) started.
+
+> Task :buildSrc:jar UP-TO-DATE
+Watching 14 directories to track changes
+Watching 15 directories to track changes
+Watching 16 directories to track changes
+Caching disabled for task ':buildSrc:jar' because:
+  Build cache is disabled
+Skipping task ':buildSrc:jar' as it is up-to-date.
+Resolve mutations for :buildSrc:assemble (Thread[Execution worker Thread 153,5,main]) started.
+:buildSrc:assemble (Thread[Execution worker Thread 172,5,main]) started.
+
+> Task :buildSrc:assemble UP-TO-DATE
+Skipping task ':buildSrc:assemble' as it has no actions.
+Resolve mutations for :buildSrc:compileTestJava (Thread[Execution worker Thread 172,5,main]) started.
+:buildSrc:compileTestJava (Thread[Execution worker Thread 70,5,main]) started.
+
+> Task :buildSrc:compileTestJava NO-SOURCE
+Watching 17 directories to track changes
+Skipping task ':buildSrc:compileTestJava' as it has no source files and no previous output files.
+Resolve mutations for :buildSrc:compileTestGroovy (Thread[Execution worker Thread 70,5,main]) started.
+:buildSrc:compileTestGroovy (Thread[Execution worker Thread 70,5,main]) started.
+
+> Task :buildSrc:compileTestGroovy NO-SOURCE
+Watching 17 directories to track changes
+Skipping task ':buildSrc:compileTestGroovy' as it has no source files and no previous output files.
+Resolve mutations for :buildSrc:processTestResources (Thread[Execution worker Thread 120,5,main]) started.
+:buildSrc:processTestResources (Thread[Execution worker Thread 120,5,main]) started.
+
+> Task :buildSrc:processTestResources NO-SOURCE
+Watching 17 directories to track changes
+Skipping task ':buildSrc:processTestResources' as it has no source files and no previous output files.
+Resolve mutations for :buildSrc:testClasses (Thread[Execution worker Thread 120,5,main]) started.
+:buildSrc:testClasses (Thread[Execution worker Thread 120,5,main]) started.
+
+> Task :buildSrc:testClasses UP-TO-DATE
+Skipping task ':buildSrc:testClasses' as it has no actions.
+Resolve mutations for :buildSrc:test (Thread[Execution worker Thread 120,5,main]) started.
+producer locations for task group 0 (Thread[Execution worker Thread 32,5,main]) started.
+:buildSrc:test (Thread[Execution worker Thread 33,5,main]) started.
+
+> Task :buildSrc:test NO-SOURCE
+Watching 17 directories to track changes
+Watching 18 directories to track changes
+Skipping task ':buildSrc:test' as it has no source files and no previous output files.
+Resolve mutations for :buildSrc:check (Thread[Execution worker Thread 33,5,main]) started.
+:buildSrc:check (Thread[Execution worker Thread 103,5,main]) started.
+
+> Task :buildSrc:check UP-TO-DATE
+Skipping task ':buildSrc:check' as it has no actions.
+Resolve mutations for :buildSrc:build (Thread[Execution worker Thread 103,5,main]) started.
+:buildSrc:build (Thread[Execution worker Thread 103,5,main]) started.
+
+> Task :buildSrc:build UP-TO-DATE
+Skipping task ':buildSrc:build' as it has no actions.
+
+> Configure project :systemTests
+Evaluating project ':systemTests' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/tests/system/build.gradle'.
+
+> Configure project :apps
+Evaluating project ':apps' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/apps/build.gradle'.
+
+> Configure project :base
+Evaluating project ':base' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build.gradle'.
+
+> Configure project :controls
+Evaluating project ':controls' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.controls/build.gradle'.
+
+> Configure project :fxml
+Evaluating project ':fxml' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.fxml/build.gradle'.
+
+> Configure project :graphics
+Evaluating project ':graphics' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build.gradle'.
+
+> Configure project :media
+Evaluating project ':media' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.media/build.gradle'.
+
+> Configure project :swing
+Evaluating project ':swing' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.swing/build.gradle'.
+
+> Configure project :swt
+Evaluating project ':swt' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.swt/build.gradle'.
+
+> Configure project :web
+Evaluating project ':web' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.web/build.gradle'.
+
+> Configure project :
+Evaluating root project 'jfx' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/build.gradle'.
+Applying COMPILE_FLAGS_FILE 'buildSrc/linux.gradle'
+gradle.gradleVersion: 7.6
+OS_NAME: linux
+OS_ARCH: aarch64
+JAVA_HOME: /usr/lib/jvm/java-17-openjdk-arm64
+JDK_HOME: /usr/lib/jvm/java-17-openjdk-arm64
+java.runtime.version: 17.0.15+6-Ubuntu-0ubuntu124.04
+java version: 17.0.15
+java build number: 6
+jdk.runtime.version: 17.0.15+6-Ubuntu-0ubuntu124.04
+jdk version: 17.0.15
+jdk build number: 6
+minimum jdk version: 17
+minimum jdk build number: 35
+Java target version: 17
+GCC version: gcc12.2.0-OL6.4+1.0
+cmake version: 3.22.3
+ninja version: 1.8.2
+ant version: 1.10.5
+HAS_JAVAFX_MODULES: false
+STUB_RUNTIME: /usr/lib/jvm/java-17-openjdk-arm64
+CONF: Release
+NUM_COMPILE_THREADS: 192
+COMPILE_TARGETS: linux
+COMPILE_FLAGS_FILES: buildSrc/linux.gradle
+HUDSON_JOB_NAME: not_hudson
+HUDSON_BUILD_NUMBER: 0000
+PROMOTED_BUILD_NUMBER: 0
+PRODUCT_NAME: OpenJFX
+BUILD_TIMESTAMP: 2025-07-16T14:55:14Z
+RELEASE_VERSION: 21
+RELEASE_SUFFIX: -internal
+RELEASE_VERSION_SHORT: 21-internal
+RELEASE_VERSION_LONG: 21-internal+0-2025-07-16-145514
+RELEASE_VERSION_PADDED: 21.0.0.0
+MAVEN_PUBLISH: false
+MAVEN_VERSION: 
+UPDATE_STUB_CACHE: false
+JIGSAW Testing disabled for swt
+Building Webkit configuration /Release/ into /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.web/build/linux
+Using 'javac -source/-target' for task ':swing:compileJava'
+Using 'javac -source/-target' for task ':swing:compileShimsJava'
+Using 'javac -source/-target' for task ':swing:compileTestJava'
+Using 'javac -source/-target' for task ':systemTests:compileJava'
+Using 'javac -source/-target' for task ':systemTests:compileTestJava'
+Using 'javac -source/-target' for task ':systemTests:compileTestapp1Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestapp2Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestapp3Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestapp4Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestapp5Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestapp6Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestapp7Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestscriptapp1Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestscriptapp2Java'
+module: project ':apps' (buildModule=NO)
+module: project ':base' (buildModule=YES)
+module: project ':controls' (buildModule=YES)
+module: project ':fxml' (buildModule=YES)
+module: project ':graphics' (buildModule=YES)
+module: project ':media' (buildModule=YES)
+module: project ':swing' (buildModule=YES)
+module: project ':swt' (buildModule=NO)
+module: project ':systemTests' (buildModule=NO)
+module: project ':web' (buildModule=YES)
+file or directory '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/dependencies', not found
+All projects evaluated.
+Task path ':graphics:nativeGlass' matched project ':graphics'
+Task name matched 'nativeGlass'
+Selected primary task 'nativeGlass' from project :graphics
+Tasks to be executed: [task ':graphics:ccLinuxGlassGlass', task ':graphics:linkLinuxGlassGlass', task ':graphics:ccLinuxGlassGlassgtk3', task ':graphics:linkLinuxGlassGlassgtk3', task ':graphics:nativeGlass']
+Tasks that were excluded: []
+Resolve mutations for :graphics:ccLinuxGlassGlass (Thread[Execution worker Thread 128,5,main]) started.
+:graphics:ccLinuxGlassGlass (Thread[Execution worker Thread 128,5,main]) started.
+
+> Task :graphics:ccLinuxGlassGlass FAILED
+Watching 19 directories to track changes
+Watching 20 directories to track changes
+Watching 21 directories to track changes
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem was found with the configuration of task ':graphics:ccLinuxGlassGlass' (type 'CCTask').
+  - Type 'CCTask' property 'headers' specifies directory '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/headers/javafx.graphics' which doesn't exist.
+    
+    Reason: An input file was expected to be present but it doesn't exist.
+    
+    Possible solutions:
+      1. Make sure the directory exists before the task is called.
+      2. Make sure that the task which produces the directory is declared as an input.
+    
+    Please refer to https://docs.gradle.org/7.6/userguide/validation_problems.html#input_file_does_not_exist for more details about this problem.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --debug option to get more log output.
+> Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.6/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD FAILED in 4s
+3 actionable tasks: 1 executed, 2 up-to-date
+Glass library build timed out
+Building prism library...
+Initialized native services in: /home/ubuntu/.gradle/native
+Initialized jansi services in: /home/ubuntu/.gradle/native
+Received JVM installation metadata from '/usr/lib/jvm/java-17-openjdk-arm64': {JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64, JAVA_VERSION=17.0.15, JAVA_VENDOR=Ubuntu, RUNTIME_NAME=OpenJDK Runtime Environment, RUNTIME_VERSION=17.0.15+6-Ubuntu-0ubuntu124.04, VM_NAME=OpenJDK 64-Bit Server VM, VM_VERSION=17.0.15+6-Ubuntu-0ubuntu124.04, VM_VENDOR=Ubuntu, OS_ARCH=aarch64}
+Checking if the launcher JVM can be re-used for build. To be re-used, the launcher JVM needs to match the parameters required for the build process: --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-opens=java.base/java.nio.charset=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED -Xmx2g -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant
+To honour the JVM settings for this build a single-use Daemon process will be forked. See https://docs.gradle.org/7.6/userguide/gradle_daemon.html#sec:disabling_the_daemon.
+Starting process 'Gradle build daemon'. Working directory: /home/ubuntu/.gradle/daemon/7.6 Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-opens=java.base/java.nio.charset=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED -Xmx2g -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/.gradle/wrapper/dists/gradle-7.6-bin/9l9tetv7ltxvx3i8an4pb86ye/gradle-7.6/lib/gradle-launcher-7.6.jar org.gradle.launcher.daemon.bootstrap.GradleDaemon 7.6
+Successfully started process 'Gradle build daemon'
+An attempt to start the daemon took 0.521 secs.
+The client will now receive all logging from the daemon (pid: 60975). The daemon log file: /home/ubuntu/.gradle/daemon/7.6/daemon-60975.out.log
+Closing daemon's stdin at end of input.
+The daemon will no longer process any standard input.
+Daemon will be stopped at the end of the build 
+Using 192 worker leases.
+Received JVM installation metadata from '/usr/lib/jvm/java-17-openjdk-arm64': {JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64, JAVA_VERSION=17.0.15, JAVA_VENDOR=Ubuntu, RUNTIME_NAME=OpenJDK Runtime Environment, RUNTIME_VERSION=17.0.15+6-Ubuntu-0ubuntu124.04, VM_NAME=OpenJDK 64-Bit Server VM, VM_VERSION=17.0.15+6-Ubuntu-0ubuntu124.04, VM_VENDOR=Ubuntu, OS_ARCH=aarch64}
+Watching the file system is configured to be enabled if available
+Now considering [/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx] as hierarchies to watch
+Now considering [/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/buildSrc, /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx] as hierarchies to watch
+File system watching is active
+Starting Build
+Settings evaluated using settings file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/settings.gradle'.
+Projects loaded. Root project using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/build.gradle'.
+Included projects: [root project 'jfx', project ':apps', project ':base', project ':controls', project ':fxml', project ':graphics', project ':media', project ':swing', project ':swt', project ':systemTests', project ':web']
+
+> Configure project :buildSrc
+Evaluating project ':buildSrc' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/buildSrc/build.gradle'.
+Task name matched 'build'
+Selected primary task 'build' from project :
+Resolve mutations for :buildSrc:compileJava (Thread[Execution worker,5,main]) started.
+:buildSrc:compileJava (Thread[Execution worker Thread 3,5,main]) started.
+
+> Task :buildSrc:compileJava NO-SOURCE
+Watching 1 directories to track changes
+Skipping task ':buildSrc:compileJava' as it has no source files and no previous output files.
+Resolve mutations for :buildSrc:compileGroovy (Thread[Execution worker Thread 3,5,main]) started.
+:buildSrc:compileGroovy (Thread[included builds,5,main]) started.
+
+> Task :buildSrc:compileGroovy UP-TO-DATE
+Watching 6 directories to track changes
+Watching 7 directories to track changes
+Watching 8 directories to track changes
+Watching 9 directories to track changes
+Watching 10 directories to track changes
+Watching 11 directories to track changes
+Watching 12 directories to track changes
+Watching 13 directories to track changes
+Caching disabled for task ':buildSrc:compileGroovy' because:
+  Build cache is disabled
+Skipping task ':buildSrc:compileGroovy' as it is up-to-date.
+Resolve mutations for :buildSrc:processResources (Thread[included builds,5,main]) started.
+:buildSrc:processResources (Thread[included builds,5,main]) started.
+
+> Task :buildSrc:processResources NO-SOURCE
+Watching 13 directories to track changes
+Skipping task ':buildSrc:processResources' as it has no source files and no previous output files.
+Resolve mutations for :buildSrc:classes (Thread[included builds,5,main]) started.
+:buildSrc:classes (Thread[included builds,5,main]) started.
+
+> Task :buildSrc:classes UP-TO-DATE
+Skipping task ':buildSrc:classes' as it has no actions.
+Resolve mutations for :buildSrc:jar (Thread[included builds,5,main]) started.
+:buildSrc:jar (Thread[included builds,5,main]) started.
+
+> Task :buildSrc:jar UP-TO-DATE
+Watching 14 directories to track changes
+Watching 15 directories to track changes
+Watching 16 directories to track changes
+Caching disabled for task ':buildSrc:jar' because:
+  Build cache is disabled
+Skipping task ':buildSrc:jar' as it is up-to-date.
+Resolve mutations for :buildSrc:assemble (Thread[included builds,5,main]) started.
+:buildSrc:assemble (Thread[included builds,5,main]) started.
+
+> Task :buildSrc:assemble UP-TO-DATE
+Skipping task ':buildSrc:assemble' as it has no actions.
+Resolve mutations for :buildSrc:compileTestJava (Thread[included builds,5,main]) started.
+:buildSrc:compileTestJava (Thread[included builds,5,main]) started.
+
+> Task :buildSrc:compileTestJava NO-SOURCE
+Watching 17 directories to track changes
+Skipping task ':buildSrc:compileTestJava' as it has no source files and no previous output files.
+Resolve mutations for :buildSrc:compileTestGroovy (Thread[included builds,5,main]) started.
+:buildSrc:compileTestGroovy (Thread[included builds,5,main]) started.
+
+> Task :buildSrc:compileTestGroovy NO-SOURCE
+Watching 17 directories to track changes
+Skipping task ':buildSrc:compileTestGroovy' as it has no source files and no previous output files.
+Resolve mutations for :buildSrc:processTestResources (Thread[included builds,5,main]) started.
+:buildSrc:processTestResources (Thread[included builds,5,main]) started.
+
+> Task :buildSrc:processTestResources NO-SOURCE
+Watching 17 directories to track changes
+Skipping task ':buildSrc:processTestResources' as it has no source files and no previous output files.
+Resolve mutations for :buildSrc:testClasses (Thread[included builds,5,main]) started.
+:buildSrc:testClasses (Thread[included builds,5,main]) started.
+
+> Task :buildSrc:testClasses UP-TO-DATE
+Skipping task ':buildSrc:testClasses' as it has no actions.
+Resolve mutations for :buildSrc:test (Thread[included builds,5,main]) started.
+producer locations for task group 0 (Thread[included builds,5,main]) started.
+:buildSrc:test (Thread[Execution worker Thread 67,5,main]) started.
+
+> Task :buildSrc:test NO-SOURCE
+Watching 17 directories to track changes
+Watching 18 directories to track changes
+Skipping task ':buildSrc:test' as it has no source files and no previous output files.
+Resolve mutations for :buildSrc:check (Thread[Execution worker Thread 67,5,main]) started.
+:buildSrc:check (Thread[Execution worker Thread 67,5,main]) started.
+
+> Task :buildSrc:check UP-TO-DATE
+Skipping task ':buildSrc:check' as it has no actions.
+Resolve mutations for :buildSrc:build (Thread[Execution worker Thread 67,5,main]) started.
+:buildSrc:build (Thread[Execution worker Thread 67,5,main]) started.
+
+> Task :buildSrc:build UP-TO-DATE
+Skipping task ':buildSrc:build' as it has no actions.
+
+> Configure project :systemTests
+Evaluating project ':systemTests' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/tests/system/build.gradle'.
+
+> Configure project :apps
+Evaluating project ':apps' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/apps/build.gradle'.
+
+> Configure project :base
+Evaluating project ':base' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build.gradle'.
+
+> Configure project :controls
+Evaluating project ':controls' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.controls/build.gradle'.
+
+> Configure project :fxml
+Evaluating project ':fxml' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.fxml/build.gradle'.
+
+> Configure project :graphics
+Evaluating project ':graphics' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build.gradle'.
+
+> Configure project :media
+Evaluating project ':media' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.media/build.gradle'.
+
+> Configure project :swing
+Evaluating project ':swing' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.swing/build.gradle'.
+
+> Configure project :swt
+Evaluating project ':swt' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.swt/build.gradle'.
+
+> Configure project :web
+Evaluating project ':web' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.web/build.gradle'.
+
+> Configure project :
+Evaluating root project 'jfx' using build file '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/build.gradle'.
+Applying COMPILE_FLAGS_FILE 'buildSrc/linux.gradle'
+gradle.gradleVersion: 7.6
+OS_NAME: linux
+OS_ARCH: aarch64
+JAVA_HOME: /usr/lib/jvm/java-17-openjdk-arm64
+JDK_HOME: /usr/lib/jvm/java-17-openjdk-arm64
+java.runtime.version: 17.0.15+6-Ubuntu-0ubuntu124.04
+java version: 17.0.15
+java build number: 6
+jdk.runtime.version: 17.0.15+6-Ubuntu-0ubuntu124.04
+jdk version: 17.0.15
+jdk build number: 6
+minimum jdk version: 17
+minimum jdk build number: 35
+Java target version: 17
+GCC version: gcc12.2.0-OL6.4+1.0
+cmake version: 3.22.3
+ninja version: 1.8.2
+ant version: 1.10.5
+HAS_JAVAFX_MODULES: false
+STUB_RUNTIME: /usr/lib/jvm/java-17-openjdk-arm64
+CONF: Release
+NUM_COMPILE_THREADS: 192
+COMPILE_TARGETS: linux
+COMPILE_FLAGS_FILES: buildSrc/linux.gradle
+HUDSON_JOB_NAME: not_hudson
+HUDSON_BUILD_NUMBER: 0000
+PROMOTED_BUILD_NUMBER: 0
+PRODUCT_NAME: OpenJFX
+BUILD_TIMESTAMP: 2025-07-16T14:55:19Z
+RELEASE_VERSION: 21
+RELEASE_SUFFIX: -internal
+RELEASE_VERSION_SHORT: 21-internal
+RELEASE_VERSION_LONG: 21-internal+0-2025-07-16-145519
+RELEASE_VERSION_PADDED: 21.0.0.0
+MAVEN_PUBLISH: false
+MAVEN_VERSION: 
+UPDATE_STUB_CACHE: false
+JIGSAW Testing disabled for swt
+Building Webkit configuration /Release/ into /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.web/build/linux
+Using 'javac -source/-target' for task ':swing:compileJava'
+Using 'javac -source/-target' for task ':swing:compileShimsJava'
+Using 'javac -source/-target' for task ':swing:compileTestJava'
+Using 'javac -source/-target' for task ':systemTests:compileJava'
+Using 'javac -source/-target' for task ':systemTests:compileTestJava'
+Using 'javac -source/-target' for task ':systemTests:compileTestapp1Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestapp2Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestapp3Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestapp4Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestapp5Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestapp6Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestapp7Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestscriptapp1Java'
+Using 'javac -source/-target' for task ':systemTests:compileTestscriptapp2Java'
+module: project ':apps' (buildModule=NO)
+module: project ':base' (buildModule=YES)
+module: project ':controls' (buildModule=YES)
+module: project ':fxml' (buildModule=YES)
+module: project ':graphics' (buildModule=YES)
+module: project ':media' (buildModule=YES)
+module: project ':swing' (buildModule=YES)
+module: project ':swt' (buildModule=NO)
+module: project ':systemTests' (buildModule=NO)
+module: project ':web' (buildModule=YES)
+file or directory '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/dependencies', not found
+All projects evaluated.
+Task path ':graphics:nativePrism' matched project ':graphics'
+Task name matched 'nativePrism'
+Selected primary task 'nativePrism' from project :graphics
+Tasks to be executed: [task ':verifyJava', task ':base:processVersionInfo', task ':base:compileJava', task ':base:processResources', task ':base:classes', task ':base:jar', task ':graphics:generateGrammarSource', task ':graphics:compileJslcJava', task ':graphics:compileJava', task ':graphics:compilePrismCompilers', task ':graphics:generatePrismShaders', task ':graphics:compilePrismHLSLShaders', task ':graphics:ccLinuxPrism', task ':graphics:linkLinuxPrism', task ':graphics:nativePrism']
+Tasks that were excluded: []
+Resolve mutations for :verifyJava (Thread[Execution worker Thread 41,5,main]) started.
+:verifyJava (Thread[Execution worker Thread 41,5,main]) started.
+
+> Task :verifyJava
+Caching disabled for task ':verifyJava' because:
+  Build cache is disabled
+Task ':verifyJava' is not up-to-date because:
+  Task has not declared any outputs despite executing actions.
+Resolve mutations for :base:processVersionInfo (Thread[Execution worker Thread 41,5,main]) started.
+:base:processVersionInfo (Thread[Execution worker Thread 41,5,main]) started.
+
+> Task :base:processVersionInfo UP-TO-DATE
+Watching 19 directories to track changes
+Watching 20 directories to track changes
+Caching disabled for task ':base:processVersionInfo' because:
+  Build cache is disabled
+Skipping task ':base:processVersionInfo' as it is up-to-date.
+Resolve mutations for :base:compileJava (Thread[Execution worker Thread 41,5,main]) started.
+:base:compileJava (Thread[Execution worker Thread 41,5,main]) started.
+
+> Task :base:compileJava UP-TO-DATE
+Watching 44 directories to track changes
+Watching 48 directories to track changes
+Watching 74 directories to track changes
+Watching 75 directories to track changes
+Watching 76 directories to track changes
+Watching 77 directories to track changes
+Caching disabled for task ':base:compileJava' because:
+  Build cache is disabled
+Skipping task ':base:compileJava' as it is up-to-date.
+Resolve mutations for :base:processResources (Thread[Execution worker Thread 41,5,main]) started.
+:base:processResources (Thread[Execution worker Thread 41,5,main]) started.
+
+> Task :base:processResources NO-SOURCE
+Watching 78 directories to track changes
+Skipping task ':base:processResources' as it has no source files and no previous output files.
+Resolve mutations for :base:classes (Thread[Execution worker Thread 100,5,main]) started.
+:base:classes (Thread[Execution worker Thread 100,5,main]) started.
+
+> Task :base:classes UP-TO-DATE
+Skipping task ':base:classes' as it has no actions.
+Resolve mutations for :base:jar (Thread[Execution worker Thread 41,5,main]) started.
+:base:jar (Thread[Execution worker Thread 41,5,main]) started.
+
+> Task :base:jar SKIPPED
+Skipping task ':base:jar' as task onlyIf 'Task is enabled' is false.
+work action resolve base.jar (project :base) (Thread[Execution worker Thread 41,5,main]) started.
+Resolve mutations for :graphics:generateGrammarSource (Thread[Execution worker Thread 10,5,main]) started.
+:graphics:generateGrammarSource (Thread[Execution worker Thread 187,5,main]) started.
+
+> Task :graphics:generateGrammarSource UP-TO-DATE
+Watching 84 directories to track changes
+Watching 90 directories to track changes
+Caching disabled for task ':graphics:generateGrammarSource' because:
+  Build cache is disabled
+Skipping task ':graphics:generateGrammarSource' as it is up-to-date.
+Resolve mutations for :graphics:compileJslcJava (Thread[Execution worker Thread 187,5,main]) started.
+:graphics:compileJslcJava (Thread[Execution worker Thread 38,5,main]) started.
+
+> Task :graphics:compileJslcJava UP-TO-DATE
+Watching 105 directories to track changes
+Watching 120 directories to track changes
+Watching 121 directories to track changes
+Watching 122 directories to track changes
+Watching 123 directories to track changes
+Caching disabled for task ':graphics:compileJslcJava' because:
+  Build cache is disabled
+Skipping task ':graphics:compileJslcJava' as it is up-to-date.
+Resolve mutations for :graphics:compileJava (Thread[Execution worker Thread 38,5,main]) started.
+:graphics:compileJava (Thread[Execution worker Thread 38,5,main]) started.
+
+> Task :graphics:compileJava UP-TO-DATE
+Watching 124 directories to track changes
+Watching 124 directories to track changes
+Watching 124 directories to track changes
+Watching 124 directories to track changes
+Watching 125 directories to track changes
+Watching 125 directories to track changes
+Watching 125 directories to track changes
+Watching 125 directories to track changes
+Watching 125 directories to track changes
+Watching 125 directories to track changes
+Watching 125 directories to track changes
+Watching 125 directories to track changes
+Watching 125 directories to track changes
+Watching 125 directories to track changes
+Watching 125 directories to track changes
+Watching 125 directories to track changes
+Watching 125 directories to track changes
+Watching 125 directories to track changes
+Watching 125 directories to track changes
+Watching 126 directories to track changes
+Watching 127 directories to track changes
+Watching 129 directories to track changes
+Watching 130 directories to track changes
+Watching 131 directories to track changes
+Watching 132 directories to track changes
+Watching 136 directories to track changes
+Watching 138 directories to track changes
+Watching 139 directories to track changes
+Watching 146 directories to track changes
+Watching 148 directories to track changes
+Watching 149 directories to track changes
+Watching 150 directories to track changes
+Watching 151 directories to track changes
+Watching 154 directories to track changes
+Watching 164 directories to track changes
+Watching 166 directories to track changes
+Watching 167 directories to track changes
+Watching 168 directories to track changes
+Watching 170 directories to track changes
+Watching 171 directories to track changes
+Watching 182 directories to track changes
+Watching 184 directories to track changes
+Watching 185 directories to track changes
+Watching 186 directories to track changes
+Watching 203 directories to track changes
+Watching 219 directories to track changes
+Watching 221 directories to track changes
+Watching 241 directories to track changes
+Watching 242 directories to track changes
+Watching 365 directories to track changes
+Watching 366 directories to track changes
+Watching 368 directories to track changes
+Watching 369 directories to track changes
+Watching 370 directories to track changes
+Caching disabled for task ':graphics:compileJava' because:
+  Build cache is disabled
+Skipping task ':graphics:compileJava' as it is up-to-date.
+Resolve mutations for :graphics:compilePrismCompilers (Thread[Execution worker Thread 38,5,main]) started.
+:graphics:compilePrismCompilers (Thread[Execution worker Thread 188,5,main]) started.
+
+> Task :graphics:compilePrismCompilers
+Watching 371 directories to track changes
+Watching 372 directories to track changes
+Watching 373 directories to track changes
+Caching disabled for task ':graphics:compilePrismCompilers' because:
+  Build cache is disabled
+Task ':graphics:compilePrismCompilers' is not up-to-date because:
+  No history is available.
+The input changes require a full rebuild for incremental task ':graphics:compilePrismCompilers'.
+Watching 372 directories to track changes
+Watching 371 directories to track changes
+Compiling with toolchain '/usr/lib/jvm/java-17-openjdk-arm64'.
+Compiling with Java command line compiler '/usr/lib/jvm/java-17-openjdk-arm64/bin/javac'.
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/javac''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/javac @/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/tmp/compilePrismCompilers/java-compiler-args.txt
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/javac''
+Watching 372 directories to track changes
+Watching 373 directories to track changes
+Resolve mutations for :graphics:generatePrismShaders (Thread[Execution worker Thread 188,5,main]) started.
+:graphics:generatePrismShaders (Thread[Execution worker Thread 188,5,main]) started.
+
+> Task :graphics:generatePrismShaders
+Deleting stale output file: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism
+Watching 374 directories to track changes
+Caching disabled for task ':graphics:generatePrismShaders' because:
+  Build cache is disabled
+Task ':graphics:generatePrismShaders' is not up-to-date because:
+  No history is available.
+Watching 373 directories to track changes
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/MaskDrawPgram.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/PaintAlphaTextureImagePattern.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/PaintMultiGradient.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/PaintAlphaTextureLinearGradient.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/PaintAlphaTextureRadialGradient.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/MaskSolid.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/PaintColor.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/MaskTexture.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/MaskDrawSemiRoundRect.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/MaskDrawEllipse.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/MaskDrawCircle.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/MaskFillPgram.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/MaskAlphaTexture.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/MaskFillEllipse.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/MaskFillRoundRect.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/PaintTextureRGB.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/PaintRadialGradient.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/MaskAlphaTextureDifference.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/PaintTextureYV12.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/PaintImagePattern.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/MaskFillCircle.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/PaintTextureFirstPassLCD.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/MaskAlphaOne.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/PaintMaskTextureRGB.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/PaintTextureYUV422.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/PaintTextureSecondPassLCD.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/MaskDrawRoundRect.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/PaintTextureYUV444.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/PaintLinearGradient.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Starting process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''. Working directory: /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics Command: /usr/lib/jvm/java-17-openjdk-arm64/bin/java -Dfile.encoding=UTF-8 -Duser.country -Duser.language=en -Duser.variant -cp /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.base/build/libs/base.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4/4.7.2/34fc363424d3b060b660f84974a82d6bdc7ebe0c/antlr4-4.7.2-complete.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr4-runtime/4.7.2/e27d8ab4f984f9d186f54da984a6ab1cccac755e/antlr4-runtime-4.7.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/ST4/4.1/467d508be07a542ad0a68ffcaed2d561c5fb2e0c/ST4-4.1.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.antlr/antlr-runtime/3.5.2/cd9cd41361c155f3af0f653009dcecb08d8b4afd/antlr-runtime-3.5.2.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.abego.treelayout/org.abego.treelayout.core/1.0.3/457216e8e6578099ae63667bb1e4439235892028/org.abego.treelayout.core-1.0.3.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.0.4/3178f73569fd7a1e5ffc464e680f7a8cc784b85a/javax.json-1.0.4.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/61.1/28d33b5e44e72edcc66a5da7a34a42147f38d987/icu4j-61.1.jar:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/java/jslc:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/sse/SSEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MEJavaGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/me/MENativeGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/sw/java/JSWGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/jslc/resources/com/sun/scenario/effect/compiler/backend/prism/PrismGlue.stg:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/classes/jsl-compilers/prism:/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism CompileJSL -i /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism -o /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/jsl-prism -t -pkg com/sun/prism -d3d -es2 -name /home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/src/main/jsl-prism/PaintMaskTextureSuper.jsl
+Successfully started process 'command '/usr/lib/jvm/java-17-openjdk-arm64/bin/java''
+Watching 382 directories to track changes
+Resolve mutations for :graphics:compilePrismHLSLShaders (Thread[Execution worker Thread 188,5,main]) started.
+:graphics:compilePrismHLSLShaders (Thread[Execution worker Thread 188,5,main]) started.
+
+> Task :graphics:compilePrismHLSLShaders SKIPPED
+Skipping task ':graphics:compilePrismHLSLShaders' as task onlyIf 'Task is enabled' is false.
+Resolve mutations for :graphics:ccLinuxPrism (Thread[Execution worker Thread 188,5,main]) started.
+:graphics:ccLinuxPrism (Thread[Execution worker Thread 171,5,main]) started.
+
+> Task :graphics:ccLinuxPrism FAILED
+Watching 383 directories to track changes
+Watching 384 directories to track changes
+Watching 384 directories to track changes
+Watching 385 directories to track changes
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem was found with the configuration of task ':graphics:ccLinuxPrism' (type 'CCTask').
+  - Type 'CCTask' property 'headers' specifies directory '/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/modules/javafx.graphics/build/gensrc/headers/javafx.graphics' which doesn't exist.
+    
+    Reason: An input file was expected to be present but it doesn't exist.
+    
+    Possible solutions:
+      1. Make sure the directory exists before the task is called.
+      2. Make sure that the task which produces the directory is declared as an input.
+    
+    Please refer to https://docs.gradle.org/7.6/userguide/validation_problems.html#input_file_does_not_exist for more details about this problem.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --debug option to get more log output.
+> Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.6/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD FAILED in 10s
+11 actionable tasks: 4 executed, 7 up-to-date
+Prism library build timed out
+
+=== Checking for Generated Libraries ===
+⚠️  No native libraries were generated
+
+=== Build Summary ===
+Native libraries (.so) in SDK: 0
+❌ No native libraries were successfully built
+This may require a longer build time or additional dependencies

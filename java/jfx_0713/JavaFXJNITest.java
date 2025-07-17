@@ -9,7 +9,7 @@ import java.io.File;
 public class JavaFXJNITest {
     
     // Path to our compiled JavaFX native libraries
-    private static final String JAVAFX_LIB_PATH = "/home/ubuntu/go_page_size/java/jfx_0713/jfx/build/sdk/lib";
+    private static final String JAVAFX_LIB_PATH = "/home/ubuntu/javafx_jdk17_build_20250715_234005/jfx/build/sdk/lib";
     
     public static void main(String[] args) {
         System.out.println("=== JavaFX JNI Library Loading Test ===");
