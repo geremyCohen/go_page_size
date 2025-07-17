@@ -1,4 +1,5 @@
 java/tf_0714/org/tensorflow/native/linux-aarch64/libtensorflow_jni.so
 java/tf_0714/jdk17/libtensorflow_jni-jdk17.so
+java/tf_0714/jdk17/libtensorflow-arm64-jdk17.jar
 
 
