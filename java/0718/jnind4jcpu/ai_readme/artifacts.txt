@@ -1,0 +1,22 @@
+JNI Artifacts:
+
+1. Java JAR file:
+   - Location: /home/ubuntu/go_page_size/java/0718/jnind4jcpu/ai_build/jnind4jcpu.jar
+   - Description: Contains the compiled Java classes
+
+2. Native Library:
+   - Location: /home/ubuntu/go_page_size/java/0718/jnind4jcpu/ai_build/lib/libcpuinfo.so
+   - Description: Native shared library implementing the JNI methods
+
+3. JNI Header File:
+   - Location: /home/ubuntu/go_page_size/java/0718/jnind4jcpu/src/main/native/com_example_jni_CPUInfo.h
+   - Description: Generated JNI header file with native method signatures
+
+4. Source Files:
+   - Java Source: /home/ubuntu/go_page_size/java/0718/jnind4jcpu/src/main/java/com/example/jni/CPUInfo.java
+   - Native Source: /home/ubuntu/go_page_size/java/0718/jnind4jcpu/src/main/native/com_example_jni_CPUInfo.c
+
+To use these artifacts in a JNI-based Hello World application:
+1. Include the JAR file in your Java classpath
+2. Place the native library in a directory accessible via java.library.path
+3. Import the com.example.jni.CPUInfo class in your Java code

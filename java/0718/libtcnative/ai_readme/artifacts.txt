@@ -1,0 +1,14 @@
+JNI Artifacts for libtcnative:
+
+1. Native Library (.so):
+   - Location: /home/ubuntu/go_page_size/java/0718/libtcnative/ai_build/install/lib/libtcnative-1.so
+   - Description: JNI native library for Tomcat Native
+
+2. Java Library (.jar):
+   - Location: /home/ubuntu/go_page_size/java/0718/libtcnative/ai_build/install/tomcat-native.jar
+   - Description: Java classes for Tomcat Native JNI interface
+
+These artifacts can be used in a JNI-based Hello World application by:
+1. Adding the JAR file to the Java classpath
+2. Setting the java.library.path system property to point to the directory containing the .so file
+   Example: java -Djava.library.path=/path/to/lib -cp /path/to/tomcat-native.jar HelloWorld

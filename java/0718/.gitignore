@@ -1,0 +1,16 @@
+# Build artifacts
+ai_build/
+
+# Large files (>50MB)
+*.jar
+*.so
+*.class
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# Temporary files
+*.log
+*.tmp
