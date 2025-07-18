@@ -3,31 +3,28 @@
 # Exit on error
 set -e
 
-echo "Installing JDK and JNI development tools for ARM64 Ubuntu..."
+echo "Installing JDK and development tools for JNI support..."
 
 # Update package lists
-sudo apt-get update
+apt-get update
 
-# Install OpenJDK
-sudo apt-get install -y openjdk-21-jdk
+# Install JDK (includes JRE)
+apt-get install -y openjdk-21-jdk
 
-# Install build tools
-sudo apt-get install -y build-essential
+# Install build tools needed for compiling native code
+apt-get install -y build-essential cmake maven git
 
-# Set JAVA_HOME
-export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
-echo "JAVA_HOME set to $JAVA_HOME"
+# Install additional dependencies for XGBoost
+apt-get install -y libgomp1 python3 python3-pip
 
-# Add JAVA_HOME to .bashrc if it's not already there
-if ! grep -q "export JAVA_HOME=" ~/.bashrc; then
-    echo "export JAVA_HOME=$JAVA_HOME" >> ~/.bashrc
-    echo "Added JAVA_HOME to .bashrc"
-fi
-
-# Verify installation
-echo "Verifying installation..."
+# Verify installations
+echo "Verifying installations..."
 java -version
 javac -version
 gcc --version
+cmake --version
+mvn --version
+git --version
 
 echo "JNI development environment setup complete!"
+echo "You can now compile Java applications with JNI support."
