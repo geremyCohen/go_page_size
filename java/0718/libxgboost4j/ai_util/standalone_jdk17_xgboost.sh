@@ -195,7 +195,17 @@ echo "Updating pom.xml to use Java 17..."
 sed -i 's/<maven.compiler.source>1.8<\/maven.compiler.source>/<maven.compiler.source>17<\/maven.compiler.source>/g' pom.xml
 sed -i 's/<maven.compiler.target>1.8<\/maven.compiler.target>/<maven.compiler.target>17<\/maven.compiler.target>/g' pom.xml
 
-# Build the Java package
+# Update the Scala Maven plugin configuration to work with JDK 17
+echo "Updating Scala Maven plugin configuration for JDK 17 compatibility..."
+sed -i '/<artifactId>scala-maven-plugin<\/artifactId>/,/<\/plugin>/ s/<\/configuration>/  <jvmArgs>\n    <jvmArg>--add-opens=java.base\/java.lang=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/java.lang.invoke=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/java.lang.reflect=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/java.io=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/java.net=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/java.nio=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/java.util=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/java.util.concurrent=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/java.util.concurrent.atomic=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/sun.nio.ch=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/sun.nio.cs=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/sun.security.action=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/sun.util.calendar=ALL-UNNAMED<\/jvmArg>\n  <\/jvmArgs>\n<\/configuration>/' pom.xml
+
+# Also add the JVM args to the exec-maven-plugin
+echo "Updating exec-maven-plugin configuration for JDK 17 compatibility..."
+sed -i '/<artifactId>exec-maven-plugin<\/artifactId>/,/<\/plugin>/ s/<\/configuration>/  <jvmArgs>\n    <jvmArg>--add-opens=java.base\/java.lang=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/java.lang.invoke=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/java.lang.reflect=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/java.io=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/java.net=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/java.nio=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/java.util=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/java.util.concurrent=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/java.util.concurrent.atomic=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/sun.nio.ch=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/sun.nio.cs=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/sun.security.action=ALL-UNNAMED<\/jvmArg>\n    <jvmArg>--add-opens=java.base\/sun.util.calendar=ALL-UNNAMED<\/jvmArg>\n  <\/jvmArgs>\n<\/configuration>/' pom.xml
+
+# Build the Java package with skipTests to avoid test failures
+echo "Building the Java package with JDK 17..."
+export MAVEN_OPTS="--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.base/sun.nio.cs=ALL-UNNAMED --add-opens=java.base/sun.security.action=ALL-UNNAMED --add-opens=java.base/sun.util.calendar=ALL-UNNAMED"
 mvn clean package -DskipTests
 
 # Copy the artifacts
