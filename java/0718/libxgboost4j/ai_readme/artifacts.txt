@@ -1,0 +1,21 @@
+JNI Artifacts for libxgboost4j:
+
+1. Native Libraries (.so):
+   - Location: /home/ubuntu/go_page_size/java/0718/libxgboost4j/ai_build/libxgboost.so
+   - Description: The native C++ library compiled for ARM64 architecture that provides the core XGBoost functionality.
+   
+   - Location: /home/ubuntu/go_page_size/java/0718/libxgboost4j/ai_build/libdmlc.so.0.6
+   - Description: A dependency of the libxgboost.so library that provides core functionality.
+   
+   - Location: /home/ubuntu/go_page_size/java/0718/libxgboost4j/ai_build/libdmlc.so.0 (symlink to libdmlc.so.0.6)
+   - Description: A symbolic link to libdmlc.so.0.6 that is required by libxgboost.so.
+
+2. Java Library (.jar):
+   - Location: /home/ubuntu/go_page_size/java/0718/libxgboost4j/ai_build/xgboost4j_2.12-3.1.0-SNAPSHOT.jar
+   - Description: The Java wrapper library that uses JNI to interface with the native XGBoost library.
+
+Usage:
+- When using these libraries in a Java application, all files need to be available.
+- The .jar file should be included in the Java classpath.
+- The .so files should be in a directory that is in the Java library path (java.library.path).
+- Alternatively, you can use System.load() to load the native library explicitly, but you need to ensure that all dependencies are in the same directory or in a directory that is in the LD_LIBRARY_PATH.

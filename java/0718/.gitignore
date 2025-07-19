@@ -1,5 +1,9 @@
 # Build artifacts
 ai_build/
+*/ai_build/
+libxgboost4j/1/xgboost/build/
+libxgboost4j/1/xgboost/lib/
+libxgboost4j/1/xgboost/jvm-packages/*/target/
 
 # Large files (>50MB)
 *.jar
