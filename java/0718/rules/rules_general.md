@@ -4,7 +4,7 @@
 
 . Differentiate between the files I ask for, and the files you make that enable you to perform the task.  Keep the files I request in the folder I request them in, for the files you make to perform utility tasks, keep them in an "ai_util" subdirectory of FULL_PATH
 
-. Make any .txt or .md files in a "ai_readme" in the FULL_PATH subdirectory.
+. Make any .txt, .md, summary, or informational files in a "ai_readme" in the FULL_PATH subdirectory.
 
 . Always create build artifacts to a "ai_build" folder under FULL_PATH.  You should be able to delete/clean old build folders between testing iterations easily, and I want to be able to easily add folders that contain un-needed build artifacts to a .gitignore
 
