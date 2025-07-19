@@ -5,9 +5,10 @@ This script creates a Docker container named `3_libxgboost4j_1` and runs the JDK
 ## What the Script Does
 
 1. Creates a Docker container named `3_libxgboost4j_1` based on Ubuntu
-2. Copies the JDK17 scripts and artifacts to the container
-3. Runs the JDK17 installation script in the container
-4. Runs the JDK17 hello world application in the container
+2. Installs Python in the container (required for XGBoost build process)
+3. Copies the JDK17 scripts and artifacts to the container
+4. Runs the JDK17 installation script in the container
+5. Runs the JDK17 hello world application in the container
 
 ## Prerequisites
 
@@ -31,7 +32,7 @@ chmod +x install_and_run.sh
 If the script runs successfully, you should see output from each of the steps, including:
 
 1. Creation of the Docker container
-2. Installation of JDK17 and development tools in the container
+2. Installation of Python and JDK17 in the container
 3. Running of the XGBoost hello world application in the container
 
 The final output should include a message indicating that the JDK17 installation and hello world test have been completed successfully in the container.
@@ -56,3 +57,4 @@ If the script fails at any point, check the error message for details. Common is
 - The script automatically removes any existing container with the same name before creating a new one
 - The container continues running after the script completes, so remember to stop and remove it when you're done
 - If you need to run the script multiple times with different iterations, change the container name in the script
+- Python is required for the XGBoost build process, so the script installs it automatically

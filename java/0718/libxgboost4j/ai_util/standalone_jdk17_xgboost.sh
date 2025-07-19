@@ -143,6 +143,22 @@ set -e  # Exit on error
 
 echo "Compiling XGBoost with JNI support for JDK 17..."
 
+# Check if we're running as root
+if [ "$(id -u)" -eq 0 ]; then
+    # Running as root, no need for sudo
+    APT_CMD="apt-get"
+else
+    # Not running as root, use sudo
+    APT_CMD="sudo apt-get"
+fi
+
+# Install Python if not already installed
+if ! command -v python &> /dev/null; then
+    echo "Python not found. Installing Python..."
+    $APT_CMD update
+    $APT_CMD install -y python3 python-is-python3
+fi
+
 # Create directories
 WORK_DIR=$(pwd)
 BUILD_DIR="$WORK_DIR/build"
@@ -333,7 +349,7 @@ chmod +x jdk17_install.sh compile_xgboost_jdk17.sh jdk17_hello_world_run.sh
 # Install required tools
 echo "=== Installing required tools ==="
 $APT_CMD update
-$APT_CMD install -y git wget maven
+$APT_CMD install -y git wget maven python3 python-is-python3
 
 # Run the JDK17 installation script
 echo "=== Running JDK17 installation script ==="

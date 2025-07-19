@@ -73,10 +73,10 @@ docker cp "${PARENT_DIR}/4/artifacts" "${CONTAINER_NAME}:/root/"
 echo "Making scripts executable in the container..."
 docker exec "${CONTAINER_NAME}" chmod +x /root/jdk17_install.sh /root/jdk17_hello_world_run.sh
 
-# Install wget in the container
-echo "Installing wget in the container..."
+# Install wget and python in the container
+echo "Installing wget and python in the container..."
 docker exec "${CONTAINER_NAME}" apt-get update
-docker exec "${CONTAINER_NAME}" apt-get install -y wget
+docker exec "${CONTAINER_NAME}" apt-get install -y wget python3 python-is-python3
 
 # Run the JDK17 installation script
 echo "Running JDK17 installation script in the container..."
